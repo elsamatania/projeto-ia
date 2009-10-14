@@ -19,14 +19,14 @@ public class GUIJogadorHumano extends GUIJogador {
 		this.botao4 = new JButton(jog.getJogo().procurar(3).getIcone());
 		this.botao5 = new JButton(jog.getJogo().procurar(4).getIcone());
 		this.botao6 = new JButton(jog.getJogo().procurar(5).getIcone());
-		this.botao7 = new JButton(jog.getJogo().procurar(6).getIcone());
+		
 		painel.add(botao1);
 		painel.add(botao2);
 		painel.add(botao3);
 		painel.add(botao4);
 		painel.add(botao5);
 		painel.add(botao6);
-		painel.add(botao7);
+		
 	}
 	
 

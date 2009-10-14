@@ -16,7 +16,7 @@ public class GUIJogador {
 	protected JButton botao4;
 	protected JButton botao5;
 	protected JButton botao6;
-	protected JButton botao7;
+	
 	
 	public GUIJogador(){
 		this.painel= new JPanel();
@@ -26,14 +26,13 @@ public class GUIJogador {
 		this.botao4 = new JButton(new ImageIcon("src/imagens/peca 1.jpg"));
 		this.botao5 = new JButton(new ImageIcon("src/imagens/peca 1.jpg"));
 		this.botao6 = new JButton(new ImageIcon("src/imagens/peca 1.jpg"));
-		this.botao7 = new JButton(new ImageIcon("src/imagens/peca 1.jpg"));
 		painel.add(botao1);
 		painel.add(botao2);
 		painel.add(botao3);
 		painel.add(botao4);
 		painel.add(botao5);
 		painel.add(botao6);
-		painel.add(botao7);
+		
 	}
 	public GUIJogador(GridLayout layout){
 		this.painel= new JPanel(layout);
@@ -43,14 +42,14 @@ public class GUIJogador {
 		this.botao4 = new JButton(new ImageIcon("src/imagens/peca 1 hor.jpg"));
 		this.botao5 = new JButton(new ImageIcon("src/imagens/peca 1 hor.jpg"));
 		this.botao6 = new JButton(new ImageIcon("src/imagens/peca 1 hor.jpg"));
-		this.botao7 = new JButton(new ImageIcon("src/imagens/peca 1 hor.jpg"));
+		
 		painel.add(botao1);
 		painel.add(botao2);
 		painel.add(botao3);
 		painel.add(botao4);
 		painel.add(botao5);
 		painel.add(botao6);
-		painel.add(botao7);
+		
 	}
 
 	public JPanel getPainel() {
@@ -109,12 +108,5 @@ public class GUIJogador {
 		this.botao6 = botao6;
 	}
 
-	public JButton getBotao7() {
-		return botao7;
-	}
-
-	public void setBotao7(JButton botao7) {
-		this.botao7 = botao7;
-	}
 	
 }
