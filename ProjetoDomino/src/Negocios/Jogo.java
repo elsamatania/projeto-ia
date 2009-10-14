@@ -1,0 +1,119 @@
+package Negocios;
+
+
+import Repositorio.Repositorio;
+
+public class Jogo {
+
+	private Jogador jogador1;
+	private Jogador jogador2;
+	private Jogador jogador3;
+	private Jogador jogador4;
+	private Repositorio pecas;
+	private int ladoA;
+	private int ladoB;
+	private Posicao posicaoA;
+	private Posicao posicaoB;
+	private Placar placar;
+
+	public Jogo(Jogador jog1, Jogador jog2, Jogador jog3, Jogador jog4,
+			Repositorio pecas) {
+		this.jogador1 = jog1;
+		this.jogador2 = jog2;
+		this.jogador3 = jog3;
+		this.jogador4 = jog4;
+		this.pecas = pecas;
+		this.ladoA = 0;
+		this.ladoB = 0;
+		this.placar = new Placar();
+		this.posicaoA = new Posicao(0, 0, 0, 0);
+		this.posicaoB = new Posicao(0, 0, 0, 0);
+
+	}
+
+	public Jogo() {
+	}
+
+	public Jogador getJogador1() {
+		return jogador1;
+	}
+
+	public void setJogador1(Jogador jogador1) {
+		this.jogador1 = jogador1;
+	}
+
+	public Jogador getJogador2() {
+		return jogador2;
+	}
+
+	public void setJogador2(Jogador jogador2) {
+		this.jogador2 = jogador2;
+	}
+
+	public Jogador getJogador3() {
+		return jogador3;
+	}
+
+	public void setJogador3(Jogador jogador3) {
+		this.jogador3 = jogador3;
+	}
+
+	public Jogador getJogador4() {
+		return jogador4;
+	}
+
+	public void setJogador4(Jogador jogador4) {
+		this.jogador4 = jogador4;
+	}
+
+	public Repositorio getPecas() {
+		return pecas;
+	}
+
+	public void setPecas(Repositorio pecas) {
+		this.pecas = pecas;
+	}
+
+	public int getLadoA() {
+		return ladoA;
+	}
+
+	public void setLadoA(int ladoA) {
+		this.ladoA = ladoA;
+	}
+
+	public int getLadoB() {
+		return ladoB;
+	}
+
+	public void setLadoB(int ladoB) {
+		this.ladoB = ladoB;
+	}
+
+	public Posicao getPosicaoA() {
+		return posicaoA;
+	}
+
+	public void setPosicaoA(Posicao posicaoA) {
+		this.posicaoA = posicaoA;
+	}
+
+	public Posicao getPosicaoB() {
+		return posicaoB;
+	}
+
+	public void setPosicaoB(Posicao posicaoB) {
+		this.posicaoB = posicaoB;
+	}
+
+	public Placar getPlacar() {
+		return placar;
+	}
+
+	public void setPlacar(Placar placar) {
+		this.placar = placar;
+	}
+
+	
+
+}
