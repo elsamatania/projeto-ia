@@ -28,16 +28,19 @@ public class Jogo {
 		this.ladoA = 0;
 		this.ladoB = 0;
 		this.placar = new Placar();
-		this.posicaoA = new Posicao(519, 230, 540,209 );
-		this.posicaoB = new Posicao(0, 0, 0, 0);
-		this.setTabuleiro(tabuleiro);
+		this.posicaoA = new Posicao(519, 230, 540, 209);
+		this.posicaoB = new Posicao(519, 230, 540, 209);
+		this.tabuleiro = tabuleiro;
 
 	}
 
 	public Jogo() {
+		this.placar = new Placar();
+		this.posicaoA = new Posicao(519, 230, 540, 209);
+		this.posicaoB = new Posicao(519, 230, 540, 209);
 	}
 
-	public Jogador getJogador1() {
+	public Humano getJogador1() {
 		return jogador1;
 	}
 
@@ -45,7 +48,7 @@ public class Jogo {
 		this.jogador1 = jogador1;
 	}
 
-	public Jogador getJogador2() {
+	public Maquina getJogador2() {
 		return jogador2;
 	}
 
@@ -53,7 +56,7 @@ public class Jogo {
 		this.jogador2 = jogador2;
 	}
 
-	public Jogador getJogador3() {
+	public Maquina getJogador3() {
 		return jogador3;
 	}
 
@@ -61,7 +64,7 @@ public class Jogo {
 		this.jogador3 = jogador3;
 	}
 
-	public Jogador getJogador4() {
+	public Maquina getJogador4() {
 		return jogador4;
 	}
 

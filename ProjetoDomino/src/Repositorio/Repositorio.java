@@ -39,9 +39,9 @@ public class Repositorio {
 		Peca resp = null;
 		boolean achei=false;
 		int tan = this.tamanho();
-		for (int i=0;i<tan||(!achei);i++){
-			if(this.procurar(i).getId()==id){
-				resp = this.procurar(1);
+		for (int i=0;(i<tan||(!achei));i++){
+			if(this.procurar(i).getId() == id){
+				resp = this.procurar(i);
 				achei = true;
 			}
 			

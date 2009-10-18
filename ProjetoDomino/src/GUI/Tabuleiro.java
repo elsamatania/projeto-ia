@@ -27,6 +27,9 @@ public class Tabuleiro extends JPanel{
 		
 		Graphics2D g2 = (Graphics2D)g;
 		g2.drawImage(imagem,0,0,larg,alt,this);
+		for(int i=0;i<pecas.tamanho();i++){
+			g2.drawImage(pecas.procurar(i).getImagemHor1(),pecas.procurar(i).getPosicaoX(),pecas.procurar(i).getPosicaoY(),this);
+		}
 	}
 
 	public void setPecas(Repositorio pecas) {
