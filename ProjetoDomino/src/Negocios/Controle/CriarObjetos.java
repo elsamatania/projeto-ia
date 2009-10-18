@@ -20,173 +20,173 @@ public class CriarObjetos {
 	private Maquina jog4 = new Maquina("teste");
 	private	Tabuleiro tab = new Tabuleiro(new ImageIcon("src/imagens/tabuleiro 1.jpg").getImage(), 1120, 500);
 
-	Peca peca1 = new Peca(1, new ImageIcon("src/imagens/branco.jpg")
-			.getImage(), new ImageIcon("src/imagens/branco.jpg")
-			.getImage(), new ImageIcon("src/imagens/branco.jpg")
-			.getImage(), new ImageIcon("src/imagens/branco.jpg")
+	Peca peca1 = new Peca(1, new ImageIcon("src/imagens/pecasvert1/branco.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/branco.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/branco.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/branco.jpg")
 			.getImage(), new ImageIcon("src/imagens/Icones/branco.jpg"), 0, 0,
 			true);
-	Peca peca2 = new Peca(2, new ImageIcon("src/imagens/brancopio.jpg")
-			.getImage(), new ImageIcon("src/imagens/brancopio.jpg")
-			.getImage(), new ImageIcon("src/imagens/brancopio.jpg")
-			.getImage(), new ImageIcon("src/imagens/brancopio.jpg")
+	Peca peca2 = new Peca(2, new ImageIcon("src/imagens/pecasvert1/brancopio.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/brancopio.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/brancopio.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/brancopio.jpg")
 			.getImage(), new ImageIcon("src/imagens/Icones/brancopio.jpg"), 0,
 			1, false);
-	Peca peca3 = new Peca(3, new ImageIcon("src/imagens/brancoduke.jpg")
-			.getImage(), new ImageIcon("src/imagens/brancoduke.jpg")
-			.getImage(), new ImageIcon("src/imagens/brancoduke.jpg")
-			.getImage(), new ImageIcon("src/imagens/brancoduke.jpg")
+	Peca peca3 = new Peca(3, new ImageIcon("src/imagens/pecasvert1/brancoduke.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/brancoduke.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/brancoduke.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/brancoduke.jpg")
 			.getImage(), new ImageIcon("src/imagens/Icones/brancoduke.jpg"), 0,
 			2, false);
 	Peca peca4 = new Peca(4,
-			new ImageIcon("src/imagens/brancoterno.jpg").getImage(),
-			new ImageIcon("src/imagens/brancoterno.jpg").getImage(),
-			new ImageIcon("src/imagens/brancoterno.jpg").getImage(),
-			new ImageIcon("src/imagens/brancoterno.jpg").getImage(),
+			new ImageIcon("src/imagens/pecasvert1/brancoterno.jpg").getImage(),
+			new ImageIcon("src/imagens/pecasvert1/brancoterno.jpg").getImage(),
+			new ImageIcon("src/imagens/pecasvert1/brancoterno.jpg").getImage(),
+			new ImageIcon("src/imagens/pecasvert1/brancoterno.jpg").getImage(),
 			new ImageIcon("src/imagens/Icones/brancoterno.jpg"), 0, 3, false);
 	Peca peca5 = new Peca(5, new ImageIcon(
-			"src/imagens/brancoquadra.jpg").getImage(), new ImageIcon(
-			"src/imagens/brancoquadra.jpg").getImage(), new ImageIcon(
-			"src/imagens/brancoquadra.jpg").getImage(), new ImageIcon(
-			"src/imagens/brancoquadra.jpg").getImage(), new ImageIcon(
+			"src/imagens/pecasvert1/brancoquadra.jpg").getImage(), new ImageIcon(
+			"src/imagens/pecasvert1/brancoquadra.jpg").getImage(), new ImageIcon(
+			"src/imagens/pecasvert1/brancoquadra.jpg").getImage(), new ImageIcon(
+			"src/imagens/pecasvert1/brancoquadra.jpg").getImage(), new ImageIcon(
 			"src/imagens/Icones/brancoquadra.jpg"), 0, 4, false);
 	Peca peca6 = new Peca(6,
-			new ImageIcon("src/imagens/brancoquina.jpg").getImage(),
-			new ImageIcon("src/imagens/brancoquina.jpg").getImage(),
-			new ImageIcon("src/imagens/brancoquina.jpg").getImage(),
-			new ImageIcon("src/imagens/brancoquina.jpg").getImage(),
+			new ImageIcon("src/imagens/pecasvert1/brancoquina.jpg").getImage(),
+			new ImageIcon("src/imagens/pecasvert1/brancoquina.jpg").getImage(),
+			new ImageIcon("src/imagens/pecasvert1/brancoquina.jpg").getImage(),
+			new ImageIcon("src/imagens/pecasvert1/brancoquina.jpg").getImage(),
 			new ImageIcon("src/imagens/Icones/brancoquina.jpg"), 0, 5, false);
-	Peca peca7 = new Peca(7, new ImageIcon("src/imagens/brancosena.jpg")
-			.getImage(), new ImageIcon("src/imagens/brancosena.jpg")
-			.getImage(), new ImageIcon("src/imagens/brancosena.jpg")
-			.getImage(), new ImageIcon("src/imagens/brancosena.jpg")
+	Peca peca7 = new Peca(7, new ImageIcon("src/imagens/pecasvert1/brancosena.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/brancosena.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/brancosena.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/brancosena.jpg")
 			.getImage(), new ImageIcon("src/imagens/Icones/brancosena.jpg"), 0,
 			6, false);
-	Peca peca8 = new Peca(8, new ImageIcon("src/imagens/pio.jpg")
+	Peca peca8 = new Peca(8, new ImageIcon("src/imagens/pecasvert1/pio.jpg")
 			.getImage(),
-			new ImageIcon("src/imagens/pio.jpg").getImage(),
-			new ImageIcon("src/imagens/pio.jpg").getImage(),
-			new ImageIcon("src/imagens/pio.jpg").getImage(),
+			new ImageIcon("src/imagens/pecasvert1/pio.jpg").getImage(),
+			new ImageIcon("src/imagens/pecasvert1/pio.jpg").getImage(),
+			new ImageIcon("src/imagens/pecasvert1/pio.jpg").getImage(),
 			new ImageIcon("src/imagens/Icones/pio.jpg"), 1, 1, true);
-	Peca peca9 = new Peca(9, new ImageIcon("src/imagens/pioduke.jpg")
-			.getImage(), new ImageIcon("src/imagens/pioduke.jpg")
-			.getImage(), new ImageIcon("src/imagens/pioduke.jpg")
-			.getImage(), new ImageIcon("src/imagens/pioduke.jpg")
+	Peca peca9 = new Peca(9, new ImageIcon("src/imagens/pecasvert1/pioduke.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/pioduke.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/pioduke.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/pioduke.jpg")
 			.getImage(), new ImageIcon("src/imagens/Icones/pioduke.jpg"), 1, 2,
 			false);
-	Peca peca10 = new Peca(10, new ImageIcon("src/imagens/pioterno.jpg")
-			.getImage(), new ImageIcon("src/imagens/pioterno.jpg")
-			.getImage(), new ImageIcon("src/imagens/pioterno.jpg")
-			.getImage(), new ImageIcon("src/imagens/pioterno.jpg")
+	Peca peca10 = new Peca(10, new ImageIcon("src/imagens/pecasvert1/pioterno.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/pioterno.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/pioterno.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/pioterno.jpg")
 			.getImage(), new ImageIcon("src/imagens/Icones/pioterno.jpg"), 1,
 			3, false);
-	Peca peca11 = new Peca(11, new ImageIcon("src/imagens/pioquadra.jpg")
-			.getImage(), new ImageIcon("src/imagens/pioquadra.jpg")
-			.getImage(), new ImageIcon("src/imagens/pioquadra.jpg")
-			.getImage(), new ImageIcon("src/imagens/pioquadra.jpg")
+	Peca peca11 = new Peca(11, new ImageIcon("src/imagens/pecasvert1/pioquadra.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/pioquadra.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/pioquadra.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/pioquadra.jpg")
 			.getImage(), new ImageIcon("src/imagens/Icones/pioquadra.jpg"), 1,
 			4, false);
-	Peca peca12 = new Peca(12, new ImageIcon("src/imagens/pioquina.jpg")
-			.getImage(), new ImageIcon("src/imagens/pioquina.jpg")
-			.getImage(), new ImageIcon("src/imagens/pioquina.jpg")
-			.getImage(), new ImageIcon("src/imagens/pioquina.jpg")
+	Peca peca12 = new Peca(12, new ImageIcon("src/imagens/pecasvert1/pioquina.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/pioquina.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/pioquina.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/pioquina.jpg")
 			.getImage(), new ImageIcon("src/imagens/Icones/pioquina.jpg"), 1,
 			5, false);
-	Peca peca13 = new Peca(13, new ImageIcon("src/imagens/piosena.jpg")
-			.getImage(), new ImageIcon("src/imagens/piosena.jpg")
-			.getImage(), new ImageIcon("src/imagens/piosena.jpg")
-			.getImage(), new ImageIcon("src/imagens/piosena.jpg")
+	Peca peca13 = new Peca(13, new ImageIcon("src/imagens/pecasvert1/piosena.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/piosena.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/piosena.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/piosena.jpg")
 			.getImage(), new ImageIcon("src/imagens/Icones/piosena.jpg"), 1, 6,
 			false);
-	Peca peca14 = new Peca(14, new ImageIcon("src/imagens/duke.jpg")
-			.getImage(), new ImageIcon("src/imagens/duke.jpg")
-			.getImage(), new ImageIcon("src/imagens/duke.jpg")
-			.getImage(), new ImageIcon("src/imagens/duke.jpg")
+	Peca peca14 = new Peca(14, new ImageIcon("src/imagens/pecasvert1/duke.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/duke.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/duke.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/duke.jpg")
 			.getImage(), new ImageIcon("src/imagens/Icones/duke.jpg"), 2, 2,
 			true);
-	Peca peca15 = new Peca(15, new ImageIcon("src/imagens/duketerno.jpg")
-			.getImage(), new ImageIcon("src/imagens/duketerno.jpg")
-			.getImage(), new ImageIcon("src/imagens/duketerno.jpg")
-			.getImage(), new ImageIcon("src/imagens/duketerno.jpg")
+	Peca peca15 = new Peca(15, new ImageIcon("src/imagens/pecasvert1/duketerno.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/duketerno.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/duketerno.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/duketerno.jpg")
 			.getImage(), new ImageIcon("src/imagens/Icones/duketerno.jpg"), 2,
 			3, false);
 	Peca peca16 = new Peca(16, new ImageIcon(
-			"src/imagens/dukequardra.jpg").getImage(), new ImageIcon(
-			"src/imagens/dukequadra.jpg").getImage(), new ImageIcon(
-			"src/imagens/dukequadra.jpg").getImage(), new ImageIcon(
-			"src/imagens/dukequadra.jpg").getImage(), new ImageIcon(
+			"src/imagens/pecasvert1/dukequardra.jpg").getImage(), new ImageIcon(
+			"src/imagens/pecasvert1/dukequadra.jpg").getImage(), new ImageIcon(
+			"src/imagens/pecasvert1/dukequadra.jpg").getImage(), new ImageIcon(
+			"src/imagens/pecasvert1/dukequadra.jpg").getImage(), new ImageIcon(
 			"src/imagens/Icones/dukequadra.jpg"), 2, 4, false);
 	Peca peca17 = new Peca(17, new ImageIcon("src/imagens/dukequina.jpg")
-			.getImage(), new ImageIcon("src/imagens/dukequina.jpg")
-			.getImage(), new ImageIcon("src/imagens/dukequina.jpg")
-			.getImage(), new ImageIcon("src/imagens/dukequina.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/dukequina.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/dukequina.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/dukequina.jpg")
 			.getImage(), new ImageIcon("src/imagens/Icones/dukequina.jpg"), 2,
 			5, false);
 
-	Peca peca18 = new Peca(18, new ImageIcon("src/imagens/dukesena.jpg")
-			.getImage(), new ImageIcon("src/imagens/dukesena.jpg")
-			.getImage(), new ImageIcon("src/imagens/dukesena.jpg")
-			.getImage(), new ImageIcon("src/imagens/dukesena.jpg")
+	Peca peca18 = new Peca(18, new ImageIcon("src/imagens/pecasvert1/dukesena.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/dukesena.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/dukesena.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/dukesena.jpg")
 			.getImage(), new ImageIcon("src/imagens/Icones/dukesena.jpg"), 2,
 			6, false);
-	Peca peca19 = new Peca(19, new ImageIcon("src/imagens/terno.jpg")
-			.getImage(), new ImageIcon("src/imagens/terno.jpg")
-			.getImage(), new ImageIcon("src/imagens/terno.jpg")
-			.getImage(), new ImageIcon("src/imagens/terno.jpg")
+	Peca peca19 = new Peca(19, new ImageIcon("src/imagens/pecasvert1/terno.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/terno.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/terno.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/terno.jpg")
 			.getImage(), new ImageIcon("src/imagens/Icones/terno.jpg"), 3, 3,
 			true);
 	Peca peca20 = new Peca(20,
-			new ImageIcon("src/imagens/trnoquadra.jpg").getImage(),
-			new ImageIcon("src/imagens/ternoquadra.jpg").getImage(),
-			new ImageIcon("src/imagens/ternoquadra.jpg").getImage(),
-			new ImageIcon("src/imagens/ternoquadra.jpg").getImage(),
+			new ImageIcon("src/imagens/pecasvert1/trnoquadra.jpg").getImage(),
+			new ImageIcon("src/imagens/pecasvert1/ternoquadra.jpg").getImage(),
+			new ImageIcon("src/imagens/pecasvert1/ternoquadra.jpg").getImage(),
+			new ImageIcon("src/imagens/pecasvert1/ternoquadra.jpg").getImage(),
 			new ImageIcon("src/imagens/Icones/ternoquadra.jpg"), 3, 4, false);
 	Peca peca21 = new Peca(21,
-			new ImageIcon("src/imagens/ternoquina.jpg").getImage(),
-			new ImageIcon("src/imagens/ternoquina.jpg").getImage(),
-			new ImageIcon("src/imagens/ternoquina.jpg").getImage(),
-			new ImageIcon("src/imagens/ternoquina.jpg").getImage(),
+			new ImageIcon("src/imagens/pecasvert1/ternoquina.jpg").getImage(),
+			new ImageIcon("src/imagens/pecasvert1/ternoquina.jpg").getImage(),
+			new ImageIcon("src/imagens/pecasvert1/ternoquina.jpg").getImage(),
+			new ImageIcon("src/imagens/pecasvert1/ternoquina.jpg").getImage(),
 			new ImageIcon("src/imagens/Icones/ternoquina.jpg"), 3, 5, false);
-	Peca peca22 = new Peca(22, new ImageIcon("src/imagens/ternosena.jpg")
-			.getImage(), new ImageIcon("src/imagens/ternosena.jpg")
-			.getImage(), new ImageIcon("src/imagens/ternosena.jpg")
-			.getImage(), new ImageIcon("src/imagens/ternosena.jpg")
+	Peca peca22 = new Peca(22, new ImageIcon("src/imagens/pecasvert1/ternosena.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/ternosena.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/ternosena.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/ternosena.jpg")
 			.getImage(), new ImageIcon("src/imagens/Icones/ternosena.jpg"), 3,
 			6, false);
-	Peca peca23 = new Peca(23, new ImageIcon("src/imagens/quadra.jpg")
-			.getImage(), new ImageIcon("src/imagens/quadra.jpg")
-			.getImage(), new ImageIcon("src/imagens/quadra.jpg")
-			.getImage(), new ImageIcon("src/imagens/quadra.jpg")
+	Peca peca23 = new Peca(23, new ImageIcon("src/imagens/pecasvert1/quadra.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/quadra.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/quadra.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/quadra.jpg")
 			.getImage(), new ImageIcon("src/imagens/Icones/quadra.jpg"), 4, 4,
 			true);
 	Peca peca24 = new Peca(24, new ImageIcon(
-			"src/imagens/quadraquina.jpg").getImage(), new ImageIcon(
-			"src/imagens/quadraquina.jpg").getImage(), new ImageIcon(
-			"src/imagens/quadraquina.jpg").getImage(), new ImageIcon(
-			"src/imagens/quadraquina.jpg").getImage(), new ImageIcon(
+			"src/imagens/pecasvert1/quadraquina.jpg").getImage(), new ImageIcon(
+			"src/imagens/pecasvert1/quadraquina.jpg").getImage(), new ImageIcon(
+			"src/imagens/pecasvert1/quadraquina.jpg").getImage(), new ImageIcon(
+			"src/imagens/pecasvert1/quadraquina.jpg").getImage(), new ImageIcon(
 			"src/imagens/Icones/quadraquina.jpg"), 4, 5, false);
 	Peca peca25 = new Peca(25,
-			new ImageIcon("src/imagens/quadrasena.jpg").getImage(),
-			new ImageIcon("src/imagens/quadrasena.jpg").getImage(),
-			new ImageIcon("src/imagens/quadrasena.jpg").getImage(),
-			new ImageIcon("src/imagens/quadrasena.jpg").getImage(),
+			new ImageIcon("src/imagens/pecasvert1/quadrasena.jpg").getImage(),
+			new ImageIcon("src/imagens/pecasvert1/quadrasena.jpg").getImage(),
+			new ImageIcon("src/imagens/pecasvert1/quadrasena.jpg").getImage(),
+			new ImageIcon("src/imagens/pecasvert1/quadrasena.jpg").getImage(),
 			new ImageIcon("src/imagens/Icones/quadrasena.jpg"), 4, 6, false);
-	Peca peca26 = new Peca(26, new ImageIcon("src/imagens/quina.jpg")
-			.getImage(), new ImageIcon("src/imagens/quina.jpg")
-			.getImage(), new ImageIcon("src/imagens/quina.jpg")
-			.getImage(), new ImageIcon("src/imagens/quina.jpg")
+	Peca peca26 = new Peca(26, new ImageIcon("src/imagens/pecasvert1/quina.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/quina.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/quina.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/quina.jpg")
 			.getImage(), new ImageIcon("src/imagens/Icones/quina.jpg"), 5, 5,
 			true);
-	Peca peca27 = new Peca(27, new ImageIcon("src/imagens/quinasena.jpg")
-			.getImage(), new ImageIcon("src/imagens/quinasena.jpg")
-			.getImage(), new ImageIcon("src/imagens/quinasena.jpg")
-			.getImage(), new ImageIcon("src/imagens/quinasena.jpg")
-			.getImage(), new ImageIcon("src/imagens/quinasena.jpg"), 5,
+	Peca peca27 = new Peca(27, new ImageIcon("src/imagens/pecasvert1/quinasena.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/quinasena.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/quinasena.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/quinasena.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/quinasena.jpg"), 5,
 			6, false);
-	Peca peca28 = new Peca(28, new ImageIcon("src/imagens/sena.jpg")
-			.getImage(), new ImageIcon("src/imagens/sena.jpg")
-			.getImage(), new ImageIcon("src/imagens/sena.jpg")
-			.getImage(), new ImageIcon("src/imagens/sena.jpg")
+	Peca peca28 = new Peca(28, new ImageIcon("src/imagens/pecasvert1/sena.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/sena.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/sena.jpg")
+			.getImage(), new ImageIcon("src/imagens/pecasvert1/sena.jpg")
 			.getImage(), new ImageIcon("src/imagens/Icones/sena.jpg"), 6, 6,
 			true);
 
