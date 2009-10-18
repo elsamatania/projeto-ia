@@ -8,7 +8,8 @@ public class Humano extends Jogador {
 	}
 
 	public Peca jogar(int id){
-		return this.jogo.procurarId(id);
+		Peca resp = this.jogo.procurarId(id);
+		return resp;
 	}
 
 	

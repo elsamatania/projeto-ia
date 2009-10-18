@@ -10,34 +10,30 @@ import Negocios.Humano;
 import Negocios.Jogador;
 import Negocios.Maquina;
 import Negocios.Controle.ControleJogo;
-import Negocios.Controle.CriarPecas;
+import Negocios.Controle.CriarObjetos;
 
 public class Jogar {
 
 	private void executar() {
 
-		Image tabuleiro = new ImageIcon("src/imagens/tabuleiro 1.jpg")
-				.getImage();
-
 		JFrame frame = new JFrame();
 		ControleJogo jogo = new ControleJogo();
-		CriarPecas pecas = new CriarPecas();
-		jogo.receberPecas(pecas.getPecas());
-		Jogador jog1 = new Humano("Fábio");
-		Jogador jog2 = new Maquina("teste");
-		Jogador jog3 = new Maquina("teste");
-		Jogador jog4 = new Maquina("teste");
-		jogo.definirJogadores(jog1, jog2, jog3, jog4);
+		CriarObjetos obj = new CriarObjetos();
+		
+		jogo.receberPecas(obj.getPecas());
+		jogo.definirJogadores(obj.getJog1(), obj.getJog2(), obj.getJog3(), obj.getJog4());
+		jogo.definirTabuleiro(obj.getTab());
 		jogo.distribuirPecas();
+				
 		GridLayout layout = new GridLayout(7, 0);
-		GUIJogadorHumano jogador1 = new GUIJogadorHumano(jog1);
+		GUIJogadorHumano jogador1 = new GUIJogadorHumano(jogo.getJogo().getJogador1());
 		GUIJogador jogador2 = new GUIJogador();
 		GUIJogador jogador3 = new GUIJogador(layout);
 		GUIJogador jogador4 = new GUIJogador(layout);
 
-		Tabuleiro tab = new Tabuleiro(tabuleiro, 1120, 500);
+		
 
-		frame.getContentPane().add(BorderLayout.CENTER, tab);
+		frame.getContentPane().add(BorderLayout.CENTER, jogo.getJogo().getTabuleiro());
 		frame.getContentPane().add(BorderLayout.SOUTH, jogador1.getPainel());
 		frame.getContentPane().add(BorderLayout.NORTH, jogador2.getPainel());
 		frame.getContentPane().add(BorderLayout.WEST, jogador3.getPainel());

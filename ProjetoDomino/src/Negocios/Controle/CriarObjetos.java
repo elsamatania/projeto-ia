@@ -1,13 +1,25 @@
 package Negocios.Controle;
 
+import java.awt.Image;
+
 import javax.swing.ImageIcon;
 
+import GUI.Tabuleiro;
+import Negocios.Humano;
+import Negocios.Jogador;
+import Negocios.Maquina;
 import Negocios.Peca;
 import Repositorio.Repositorio;
 
-public class CriarPecas {
+public class CriarObjetos {
 
 	private Repositorio pecas;
+	private Humano jog1 = new Humano("Fábio");
+	private Maquina jog2 = new Maquina("teste");
+	private Maquina jog3 = new Maquina("teste");
+	private Maquina jog4 = new Maquina("teste");
+	private	Tabuleiro tab = new Tabuleiro(new ImageIcon("src/imagens/tabuleiro 1.jpg").getImage(), 1120, 500);
+
 	Peca peca1 = new Peca(1, new ImageIcon("src/imagens/Icones/branco.jpg")
 			.getImage(), new ImageIcon("src/imagens/Icones/branco.jpg")
 			.getImage(), new ImageIcon("src/imagens/Icones/branco.jpg")
@@ -178,7 +190,7 @@ public class CriarPecas {
 			.getImage(), new ImageIcon("src/imagens/Icones/sena.jpg"), 6, 6,
 			true);
 
-	public CriarPecas() {
+	public CriarObjetos() {
 		this.pecas = new Repositorio();
 		pecas.incluir(peca1);
 		pecas.incluir(peca2);
@@ -210,8 +222,49 @@ public class CriarPecas {
 		pecas.incluir(peca28);
 	}
 
+	public Humano getJog1() {
+		return jog1;
+	}
+
+	public void setJog1(Humano jog1) {
+		this.jog1 = jog1;
+	}
+
+	public Maquina getJog2() {
+		return jog2;
+	}
+
+	public void setJog2(Maquina jog2) {
+		this.jog2 = jog2;
+	}
+
+	public Maquina getJog3() {
+		return jog3;
+	}
+
+	public void setJog3(Maquina jog3) {
+		this.jog3 = jog3;
+	}
+
+	public Maquina getJog4() {
+		return jog4;
+	}
+
+	public void setJog4(Maquina jog4) {
+		this.jog4 = jog4;
+	}
+
 	public Repositorio getPecas() {
 		return this.pecas;
 	}
+
+	public Tabuleiro getTab() {
+		return tab;
+	}
+
+	public void setTab(Tabuleiro tab) {
+		this.tab = tab;
+	}
+	
 
 }

@@ -1,23 +1,25 @@
 package Negocios;
 
 
+import GUI.Tabuleiro;
 import Repositorio.Repositorio;
 
 public class Jogo {
 
-	private Jogador jogador1;
-	private Jogador jogador2;
-	private Jogador jogador3;
-	private Jogador jogador4;
+	private Humano jogador1;
+	private Maquina jogador2;
+	private Maquina jogador3;
+	private Maquina jogador4;
 	private Repositorio pecas;
 	private int ladoA;
 	private int ladoB;
 	private Posicao posicaoA;
 	private Posicao posicaoB;
 	private Placar placar;
+	private Tabuleiro tabuleiro;
 
-	public Jogo(Jogador jog1, Jogador jog2, Jogador jog3, Jogador jog4,
-			Repositorio pecas) {
+	public Jogo(Humano jog1, Maquina jog2, Maquina jog3, Maquina jog4,
+			Repositorio pecas, Tabuleiro tabuleiro) {
 		this.jogador1 = jog1;
 		this.jogador2 = jog2;
 		this.jogador3 = jog3;
@@ -26,8 +28,9 @@ public class Jogo {
 		this.ladoA = 0;
 		this.ladoB = 0;
 		this.placar = new Placar();
-		this.posicaoA = new Posicao(0, 0, 0, 0);
+		this.posicaoA = new Posicao(519, 230, 540,209 );
 		this.posicaoB = new Posicao(0, 0, 0, 0);
+		this.setTabuleiro(tabuleiro);
 
 	}
 
@@ -38,7 +41,7 @@ public class Jogo {
 		return jogador1;
 	}
 
-	public void setJogador1(Jogador jogador1) {
+	public void setJogador1(Humano jogador1) {
 		this.jogador1 = jogador1;
 	}
 
@@ -46,7 +49,7 @@ public class Jogo {
 		return jogador2;
 	}
 
-	public void setJogador2(Jogador jogador2) {
+	public void setJogador2(Maquina jogador2) {
 		this.jogador2 = jogador2;
 	}
 
@@ -54,7 +57,7 @@ public class Jogo {
 		return jogador3;
 	}
 
-	public void setJogador3(Jogador jogador3) {
+	public void setJogador3(Maquina jogador3) {
 		this.jogador3 = jogador3;
 	}
 
@@ -62,7 +65,7 @@ public class Jogo {
 		return jogador4;
 	}
 
-	public void setJogador4(Jogador jogador4) {
+	public void setJogador4(Maquina jogador4) {
 		this.jogador4 = jogador4;
 	}
 
@@ -112,6 +115,14 @@ public class Jogo {
 
 	public void setPlacar(Placar placar) {
 		this.placar = placar;
+	}
+
+	public void setTabuleiro(Tabuleiro tabuleiro) {
+		this.tabuleiro = tabuleiro;
+	}
+
+	public Tabuleiro getTabuleiro() {
+		return tabuleiro;
 	}
 
 	

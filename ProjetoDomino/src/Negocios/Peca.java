@@ -15,6 +15,8 @@ public class Peca {
 	private int ladoA;
 	private int ladoB;
 	private boolean isCarroca;
+	private int posicaoX;
+	private int posicaoY;
 	
 	public Peca() {
 		super();
@@ -34,7 +36,9 @@ public class Peca {
 		this.ladoA = ladoA;
 		this.ladoB = ladoB;
 		this.isCarroca = isCarroca;
-	}
+		this.posicaoX = 0;
+		this.posicaoY = 0;
+		}
 	public int getId() {
 		return id;
 	}
@@ -110,6 +114,22 @@ public class Peca {
 
 	public int getValor() {
 		return this.ladoA + this.ladoB;
+	}
+
+	public void setPosicaoX(int posicaoX) {
+		this.posicaoX = posicaoX;
+	}
+
+	public int getPosicaoX() {
+		return posicaoX;
+	}
+
+	public void setPosicaoY(int posicaoY) {
+		this.posicaoY = posicaoY;
+	}
+
+	public int getPosicaoY() {
+		return posicaoY;
 	}
 
 	

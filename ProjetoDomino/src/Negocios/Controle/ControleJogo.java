@@ -2,8 +2,11 @@ package Negocios.Controle;
 
  
 
+import GUI.Tabuleiro;
+import Negocios.Humano;
 import Negocios.Jogador;
 import Negocios.Jogo;
+import Negocios.Maquina;
 import Negocios.Peca;
 import Repositorio.Repositorio;
 
@@ -15,7 +18,11 @@ public class ControleJogo {
 		jogo.setPecas(pecas);
 	}
 	
-	public void definirJogadores(Jogador jog1,Jogador jog2,Jogador jog3,Jogador jog4){
+	public void definirTabuleiro(Tabuleiro tab){
+		jogo.setTabuleiro(tab);
+	}
+	
+	public void definirJogadores(Humano jog1,Maquina jog2,Maquina jog3,Maquina jog4){
 		jogo.setJogador1(jog1);
 		jogo.setJogador2(jog2);
 		jogo.setJogador3(jog3);
@@ -42,16 +49,31 @@ public class ControleJogo {
 		jogo.getJogador4().setJogo(this.escolherPecas());
 	}
 	
-	public void jogada(Peca peca){
+	private void posicionarPeca(Peca peca){
+		if (peca.isCarroca()){
+			peca.setPosicaoX(this.jogo.getPosicaoA().getPosicaoCarrocaX());
+			peca.setPosicaoY(this.jogo.getPosicaoA().getPosicaoCarrocaY());
+			this.jogo.getPosicaoA().setPosicaoCarrocaX(jogo.getPosicaoA().getPosicaoCarrocaX()+41);
+		}
+		else{
+			peca.setPosicaoX(this.jogo.getPosicaoA().getPosicaoX());
+			peca.setPosicaoY(this.jogo.getPosicaoA().getPosicaoY());
+			this.jogo.getPosicaoA().setPosicaoCarrocaX(jogo.getPosicaoA().getPosicaoCarrocaX()+83);
+		}
 		
 	}
-	public Jogador partida(){
-		Jogador vencedor = null;
-		boolean terminou=false;
-		for(;!terminou;){
-			
-		}
-		return vencedor;
+	
+	public void jogarTabuleito(Peca peca){
+		this.posicionarPeca(peca);
+		jogo.getTabuleiro().getPecas().incluir(peca);
+		
+	}
+	public Jogo getJogo() {
+		return jogo;
+	}
+
+	public void setJogo(Jogo jogo) {
+		this.jogo = jogo;
 	}
 
 }
