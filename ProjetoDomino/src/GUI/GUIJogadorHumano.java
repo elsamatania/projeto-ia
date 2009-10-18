@@ -26,16 +26,13 @@ public class GUIJogadorHumano extends GUIJogador {
 		this.botao5 = new JButton(jog.getJogo().procurar(4).getIcone());
 		this.botao6 = new JButton(jog.getJogo().procurar(5).getIcone());
 
-		JLabel label1 = new JLabel(String.valueOf((jog.getJogo().procurar(0)
-				.getId())));
-
 		painel.add(botao1);
 		painel.add(botao2);
 		painel.add(botao3);
 		painel.add(botao4);
 		painel.add(botao5);
 		painel.add(botao6);
-		painel.add(label1);
+	
 
 		botao1.addActionListener(new Acao1(jog.getJogo().procurar(0).getId()));
 		botao2.addActionListener(new Acao1(jog.getJogo().procurar(1).getId()));
