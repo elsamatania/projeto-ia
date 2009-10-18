@@ -54,10 +54,6 @@ public class Repositorio {
 		return pecas.size();
 	}
 	
-	public int Tamanho(){
-		return pecas.size();
-	}
-	
 	public int procurar(int ladoA,int ladoB){
 		boolean achei = false;
 		int ind;

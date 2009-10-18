@@ -28,16 +28,16 @@ public class Jogo {
 		this.ladoA = 0;
 		this.ladoB = 0;
 		this.placar = new Placar();
-		this.posicaoA = new Posicao(519, 230, 540, 209);
-		this.posicaoB = new Posicao(519, 230, 540, 209);
+		this.posicaoA = new Posicao(519, 250, 540, 209);
+		this.posicaoB = new Posicao(519, 250, 540, 209);
 		this.tabuleiro = tabuleiro;
 
 	}
 
 	public Jogo() {
 		this.placar = new Placar();
-		this.posicaoA = new Posicao(519, 230, 540, 209);
-		this.posicaoB = new Posicao(519, 230, 540, 209);
+		this.posicaoA = new Posicao(540, 233, 540, 209);
+		this.posicaoB = new Posicao(540, 233, 540, 209);
 	}
 
 	public Humano getJogador1() {

@@ -1,7 +1,10 @@
 package Negocios.Controle;
 
+import java.awt.Image;
+
 import GUI.Tabuleiro;
 import Negocios.Humano;
+import Negocios.ImagemPeca;
 import Negocios.Jogo;
 import Negocios.Maquina;
 import Negocios.Peca;
@@ -77,25 +80,44 @@ public class ControleJogo {
 		jogo.getJogador4().setJogo(this.escolherPecas());
 	}
 
-	private void posicionarPeca(Peca peca) {
+	private ImagemPeca posicionarPeca(Peca peca) {
+		ImagemPeca resp = null;
 		if (peca.isCarroca()) {
-			peca.setPosicaoX(this.jogo.getPosicaoA().getPosicaoCarrocaX());
-			peca.setPosicaoY(this.jogo.getPosicaoA().getPosicaoCarrocaY());
-			this.jogo.getPosicaoA().setPosicaoCarrocaX(jogo.getPosicaoA().getPosicaoCarrocaX() + 41);
+			if (jogo.getTabuleiro().getImagens().tamanho()<3){
+				resp = new ImagemPeca(peca.getImagemVret1(),this.jogo.getPosicaoA().getPosicaoCarrocaX(),this.jogo.getPosicaoA().getPosicaoCarrocaY());
+				this.jogo.getPosicaoA().setPosicaoCarrocaX(jogo.getPosicaoA().getPosicaoCarrocaX() + 41);
+				this.jogo.getPosicaoA().setPosicaoX(jogo.getPosicaoA().getPosicaoX() + 41);
+			}
+			else{
+				resp = new ImagemPeca(peca.getImagemHor1(),this.jogo.getPosicaoA().getPosicaoCarrocaX(),this.jogo.getPosicaoA().getPosicaoCarrocaY());
+				this.jogo.getPosicaoA().setPosicaoCarrocaY(jogo.getPosicaoA().getPosicaoCarrocaY() + 41);
+				this.jogo.getPosicaoA().setPosicaoY(jogo.getPosicaoA().getPosicaoY() + 41);
+			}
+			
 		} else {
-			peca.setPosicaoX(this.jogo.getPosicaoA().getPosicaoX());
-			peca.setPosicaoY(this.jogo.getPosicaoA().getPosicaoY());
-			this.jogo.getPosicaoA().setPosicaoX(jogo.getPosicaoA().getPosicaoX() + 83);
+			if (jogo.getTabuleiro().getImagens().tamanho()<3){
+				resp = new ImagemPeca(peca.getImagemHor1(),this.jogo.getPosicaoA().getPosicaoX(),this.jogo.getPosicaoA().getPosicaoY());
+					this.jogo.getPosicaoA().setPosicaoX(jogo.getPosicaoA().getPosicaoX() + 83);
+					this.jogo.getPosicaoA().setPosicaoCarrocaX(jogo.getPosicaoA().getPosicaoCarrocaX() + 83);
+				
+			}
+			else{
+				resp = new ImagemPeca(peca.getImagemVret1(),this.jogo.getPosicaoA().getPosicaoX(),this.jogo.getPosicaoA().getPosicaoY());
+				this.jogo.getPosicaoA().setPosicaoY(jogo.getPosicaoA().getPosicaoY() + 83);
+				this.jogo.getPosicaoA().setPosicaoCarrocaY(jogo.getPosicaoA().getPosicaoCarrocaY() + 105);
+				
+			}
+				
 		}
-
+		return resp;
 	}
 
 	public void jogarTabuleito(Peca peca) {
-		this.posicionarPeca(peca);
-		jogo.getTabuleiro().getPecas().incluir(peca);
+		ImagemPeca imagem = this.posicionarPeca(peca);
+		jogo.getTabuleiro().getImagens().incluir(imagem);
 		jogo.getTabuleiro().repaint();
-		System.out.println(String.valueOf(jogo.getTabuleiro().getPecas()
-				.tamanho()));
+		//System.out.println(String.valueOf(jogo.getTabuleiro().getPecas()
+			//	.tamanho()));
 
 	}
 
