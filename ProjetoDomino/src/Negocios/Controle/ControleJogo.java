@@ -95,10 +95,15 @@ public class ControleJogo {
 					this.jogo.getPosicaoA().setPosicaoX(40);
 				}
 			}
-			else{
+			else if(tan < 8){
 				resp = new ImagemPeca(peca.getImagemHor1(),this.jogo.getPosicaoA().getPosicaoCarrocaX(),this.jogo.getPosicaoA().getPosicaoCarrocaY());
 				this.jogo.getPosicaoA().setPosicaoCarrocaY(41);
 				this.jogo.getPosicaoA().setPosicaoY(40);
+			}
+			else{
+				resp = new ImagemPeca(peca.getImagemVret1(),this.jogo.getPosicaoA().getPosicaoCarrocaX(),this.jogo.getPosicaoA().getPosicaoCarrocaY());
+				this.jogo.getPosicaoA().setPosicaoCarrocaX(-41);
+				this.jogo.getPosicaoA().setPosicaoX(-40);
 			}
 		}
 		else {
@@ -116,11 +121,22 @@ public class ControleJogo {
 						
 					}
 			}
-			else{
+			else if(tan < 8){
 				resp = new ImagemPeca(peca.getImagemVret1(),this.jogo.getPosicaoA().getPosicaoX(),this.jogo.getPosicaoA().getPosicaoY());
-				this.jogo.getPosicaoA().setPosicaoY(82);
-				this.jogo.getPosicaoA().setPosicaoCarrocaY(82);
-				
+				if(tan == 7){
+					this.jogo.getPosicaoA().setPosicaoX(-80);
+					this.jogo.getPosicaoA().setPosicaoCarrocaX(-41);
+					this.jogo.getPosicaoA().setPosicaoY(41);
+				}
+				else{
+					this.jogo.getPosicaoA().setPosicaoY(82);
+					this.jogo.getPosicaoA().setPosicaoCarrocaY(82);
+				}
+			}
+			else{
+				resp = new ImagemPeca(peca.getImagemHor1(),this.jogo.getPosicaoA().getPosicaoX(),this.jogo.getPosicaoA().getPosicaoY());
+				this.jogo.getPosicaoA().setPosicaoX(-82);
+				this.jogo.getPosicaoA().setPosicaoCarrocaX(-82);
 			}
 				
 		}

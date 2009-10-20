@@ -116,7 +116,7 @@ public class CriarObjetos {
 			"src/imagens/pecashor1/dukequadra.jpg").getImage(), new ImageIcon(
 			"src/imagens/pecasvert1/dukequadra.jpg").getImage(), new ImageIcon(
 			"src/imagens/Icones/dukequadra.jpg"), 2, 4, false);
-	Peca peca17 = new Peca(17, new ImageIcon("src/imagens/dukequina.jpg")
+	Peca peca17 = new Peca(17, new ImageIcon("src/imagens/pecasvert1/dukequina.jpg")
 			.getImage(), new ImageIcon("src/imagens/pecasvert1/dukequina.jpg")
 			.getImage(), new ImageIcon("src/imagens/pecashor1/dukequina.jpg")
 			.getImage(), new ImageIcon("src/imagens/pecasvert1/dukequina.jpg")
