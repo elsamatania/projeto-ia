@@ -65,8 +65,8 @@ public class CriarObjetos {
 	Peca peca8 = new Peca(8, new ImageIcon("src/imagens/pecasvert1/pio.jpg")
 			.getImage(),
 			new ImageIcon("src/imagens/pecasvert1/pio.jpg").getImage(),
-			new ImageIcon("src/imagens/pecasvert1/pio.jpg").getImage(),
 			new ImageIcon("src/imagens/pecashor1/pio.jpg").getImage(),
+			new ImageIcon("src/imagens/pecasvert1/pio.jpg").getImage(),
 			new ImageIcon("src/imagens/Icones/pio.jpg"), 1, 1, true);
 	Peca peca9 = new Peca(9, new ImageIcon("src/imagens/pecasvert1/pioduke.jpg")
 			.getImage(), new ImageIcon("src/imagens/pecasvert1/pioduke.jpg")
@@ -111,7 +111,7 @@ public class CriarObjetos {
 			.getImage(), new ImageIcon("src/imagens/Icones/duketerno.jpg"), 2,
 			3, false);
 	Peca peca16 = new Peca(16, new ImageIcon(
-			"src/imagens/pecasvert1/dukequardra.jpg").getImage(), new ImageIcon(
+			"src/imagens/pecasvert1/dukequadra.jpg").getImage(), new ImageIcon(
 			"src/imagens/pecasvert1/dukequadra.jpg").getImage(), new ImageIcon(
 			"src/imagens/pecashor1/dukequadra.jpg").getImage(), new ImageIcon(
 			"src/imagens/pecasvert1/dukequadra.jpg").getImage(), new ImageIcon(
@@ -136,7 +136,7 @@ public class CriarObjetos {
 			.getImage(), new ImageIcon("src/imagens/Icones/terno.jpg"), 3, 3,
 			true);
 	Peca peca20 = new Peca(20,
-			new ImageIcon("src/imagens/pecasvert1/trnoquadra.jpg").getImage(),
+			new ImageIcon("src/imagens/pecasvert1/ternoquadra.jpg").getImage(),
 			new ImageIcon("src/imagens/pecasvert1/ternoquadra.jpg").getImage(),
 			new ImageIcon("src/imagens/pecashor1/ternoquadra.jpg").getImage(),
 			new ImageIcon("src/imagens/pecasvert1/ternoquadra.jpg").getImage(),

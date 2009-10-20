@@ -82,29 +82,44 @@ public class ControleJogo {
 
 	private ImagemPeca posicionarPeca(Peca peca) {
 		ImagemPeca resp = null;
+		int tan = jogo.getTabuleiro().getImagens().tamanho();
 		if (peca.isCarroca()) {
-			if (jogo.getTabuleiro().getImagens().tamanho()<3){
+			if (tan < 6){
 				resp = new ImagemPeca(peca.getImagemVret1(),this.jogo.getPosicaoA().getPosicaoCarrocaX(),this.jogo.getPosicaoA().getPosicaoCarrocaY());
-				this.jogo.getPosicaoA().setPosicaoCarrocaX(jogo.getPosicaoA().getPosicaoCarrocaX() + 41);
-				this.jogo.getPosicaoA().setPosicaoX(jogo.getPosicaoA().getPosicaoX() + 41);
+				if(tan==5){
+					this.jogo.getPosicaoA().setPosicaoY(60);
+					this.jogo.getPosicaoA().setPosicaoCarrocaY(80);
+				}
+				else{
+					this.jogo.getPosicaoA().setPosicaoCarrocaX(40);
+					this.jogo.getPosicaoA().setPosicaoX(40);
+				}
 			}
 			else{
 				resp = new ImagemPeca(peca.getImagemHor1(),this.jogo.getPosicaoA().getPosicaoCarrocaX(),this.jogo.getPosicaoA().getPosicaoCarrocaY());
-				this.jogo.getPosicaoA().setPosicaoCarrocaY(jogo.getPosicaoA().getPosicaoCarrocaY() + 41);
-				this.jogo.getPosicaoA().setPosicaoY(jogo.getPosicaoA().getPosicaoY() + 41);
+				this.jogo.getPosicaoA().setPosicaoCarrocaY(41);
+				this.jogo.getPosicaoA().setPosicaoY(40);
 			}
-			
-		} else {
-			if (jogo.getTabuleiro().getImagens().tamanho()<3){
+		}
+		else {
+			if (tan < 6){
 				resp = new ImagemPeca(peca.getImagemHor1(),this.jogo.getPosicaoA().getPosicaoX(),this.jogo.getPosicaoA().getPosicaoY());
-					this.jogo.getPosicaoA().setPosicaoX(jogo.getPosicaoA().getPosicaoX() + 83);
-					this.jogo.getPosicaoA().setPosicaoCarrocaX(jogo.getPosicaoA().getPosicaoCarrocaX() + 83);
-				
+					if(tan == 5){
+						this.jogo.getPosicaoA().setPosicaoCarrocaY(65);
+						this.jogo.getPosicaoA().setPosicaoX(41);
+						this.jogo.getPosicaoA().setPosicaoY(41);
+						
+					}
+					else{
+						this.jogo.getPosicaoA().setPosicaoX(82);
+						this.jogo.getPosicaoA().setPosicaoCarrocaX(82);
+						
+					}
 			}
 			else{
 				resp = new ImagemPeca(peca.getImagemVret1(),this.jogo.getPosicaoA().getPosicaoX(),this.jogo.getPosicaoA().getPosicaoY());
-				this.jogo.getPosicaoA().setPosicaoY(jogo.getPosicaoA().getPosicaoY() + 83);
-				this.jogo.getPosicaoA().setPosicaoCarrocaY(jogo.getPosicaoA().getPosicaoCarrocaY() + 105);
+				this.jogo.getPosicaoA().setPosicaoY(82);
+				this.jogo.getPosicaoA().setPosicaoCarrocaY(82);
 				
 			}
 				

@@ -19,7 +19,7 @@ public class Posicao {
 	}
 
 	public void setPosicaoX(int posicaoX) {
-		this.posicaoX = posicaoX;
+		this.posicaoX = this.posicaoX + posicaoX;
 	}
 
 	public int getPosicaoY() {
@@ -27,7 +27,7 @@ public class Posicao {
 	}
 
 	public void setPosicaoY(int posicaoY) {
-		this.posicaoY = posicaoY;
+		this.posicaoY = this.posicaoY + posicaoY;
 	}
 
 	public int getPosicaoCarrocaX() {
@@ -35,7 +35,7 @@ public class Posicao {
 	}
 
 	public void setPosicaoCarrocaX(int posicaoCarrocaX) {
-		this.posicaoCarrocaX = posicaoCarrocaX;
+		this.posicaoCarrocaX = this.posicaoCarrocaX + posicaoCarrocaX;
 	}
 
 	public int getPosicaoCarrocaY() {
@@ -43,7 +43,7 @@ public class Posicao {
 	}
 
 	public void setPosicaoCarrocaY(int posicaoCarrocaY) {
-		this.posicaoCarrocaY = posicaoCarrocaY;
+		this.posicaoCarrocaY = this.posicaoCarrocaY + posicaoCarrocaY;
 	}
 
 }
