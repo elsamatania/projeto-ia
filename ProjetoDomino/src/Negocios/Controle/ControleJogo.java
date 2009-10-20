@@ -125,7 +125,7 @@ public class ControleJogo {
 				resp = new ImagemPeca(peca.getImagemVret1(),this.jogo.getPosicaoA().getPosicaoX(),this.jogo.getPosicaoA().getPosicaoY());
 				if(tan == 7){
 					this.jogo.getPosicaoA().setPosicaoX(-80);
-					this.jogo.getPosicaoA().setPosicaoCarrocaX(-41);
+					//this.jogo.getPosicaoA().setPosicaoCarrocaX(-41);
 					this.jogo.getPosicaoA().setPosicaoY(41);
 				}
 				else{
@@ -136,7 +136,7 @@ public class ControleJogo {
 			else{
 				resp = new ImagemPeca(peca.getImagemHor1(),this.jogo.getPosicaoA().getPosicaoX(),this.jogo.getPosicaoA().getPosicaoY());
 				this.jogo.getPosicaoA().setPosicaoX(-82);
-				this.jogo.getPosicaoA().setPosicaoCarrocaX(-82);
+				this.jogo.getPosicaoA().setPosicaoCarrocaX(-80);
 			}
 				
 		}
