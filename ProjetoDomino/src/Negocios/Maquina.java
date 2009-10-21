@@ -7,9 +7,9 @@ public class Maquina extends Jogador{
 		
 	}
 
-	public Peca jogar(int ladoA,int ladoB){
-		int id = this.jogo.procurar(ladoA, ladoB);
-		return this.jogo.procurarId(id);
+	public Jogada jogar(int ladoA,int ladoB){
+		Jogada resp = this.jogo.procurar(ladoA, ladoB);
+		return resp;
 	}
 
 }

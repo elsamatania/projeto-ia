@@ -1,10 +1,9 @@
 package Negocios.Controle;
 
-import java.awt.Image;
-
 import GUI.Tabuleiro;
 import Negocios.Humano;
 import Negocios.ImagemPeca;
+import Negocios.Jogada;
 import Negocios.Jogo;
 import Negocios.Maquina;
 import Negocios.Peca;
@@ -14,10 +13,10 @@ public class ControleJogo {
 
 	private Jogo jogo;
 	private static ControleJogo controleJogo = new ControleJogo();
+	
 
 	private ControleJogo() {
 		jogo = new Jogo();
-
 	}
 
 	public static ControleJogo getControleJogo() {
@@ -32,15 +31,15 @@ public class ControleJogo {
 		return jogo.getJogador1().jogar(id);
 	}
 
-	public Peca jogadaJog2(int ladoA, int ladoB) {
+	public Jogada jogadaJog2(int ladoA, int ladoB) {
 		return jogo.getJogador2().jogar(ladoA, ladoB);
 	}
 
-	public Peca jogadaJog3(int ladoA, int ladoB) {
+	public Jogada jogadaJog3(int ladoA, int ladoB) {
 		return jogo.getJogador3().jogar(ladoA, ladoB);
 	}
 
-	public Peca jogadaJog4(int ladoA, int ladoB) {
+	public Jogada jogadaJog4(int ladoA, int ladoB) {
 		return jogo.getJogador4().jogar(ladoA, ladoB);
 	}
 
@@ -82,7 +81,7 @@ public class ControleJogo {
 
 	private ImagemPeca posicionarPecaLadoA(Peca peca) {
 		ImagemPeca resp = null;
-		int tan = jogo.getTabuleiro().getImagens().tamanho();
+		int tan = this.jogo.getTabuleiro().getTanLadoA();
 		if (peca.isCarroca()) {
 			if (tan < 6){
 				resp = new ImagemPeca(peca.getImagemVret1(),this.jogo.getPosicaoA().getPosicaoCarrocaX(),this.jogo.getPosicaoA().getPosicaoCarrocaY());
@@ -99,7 +98,7 @@ public class ControleJogo {
 				resp = new ImagemPeca(peca.getImagemHor1(),this.jogo.getPosicaoA().getPosicaoCarrocaX(),this.jogo.getPosicaoA().getPosicaoCarrocaY());
 				if(tan == 7){
 					this.jogo.getPosicaoA().setPosicaoCarrocaX(-40);
-					this.jogo.getPosicaoA().setPosicaoX(-122);
+					this.jogo.getPosicaoA().setPosicaoX(-82);
 					//this.jogo.getPosicaoA().setPosicaoY(40);
 				}
 				else{
@@ -115,7 +114,12 @@ public class ControleJogo {
 		}
 		else {
 			if (tan < 6){
-				resp = new ImagemPeca(peca.getImagemHor1(),this.jogo.getPosicaoA().getPosicaoX(),this.jogo.getPosicaoA().getPosicaoY());
+				if(peca.getLadoA()==jogo.getLadoA()){
+					resp = new ImagemPeca(peca.getImagemHor1(),this.jogo.getPosicaoA().getPosicaoX(),this.jogo.getPosicaoA().getPosicaoY());
+				}
+				else{
+					resp = new ImagemPeca(peca.getImagemHor2(),this.jogo.getPosicaoA().getPosicaoX(),this.jogo.getPosicaoA().getPosicaoY());
+				}
 					if(tan == 5){
 						this.jogo.getPosicaoA().setPosicaoCarrocaY(65);
 						this.jogo.getPosicaoA().setPosicaoX(41);
@@ -129,7 +133,12 @@ public class ControleJogo {
 					}
 			}
 			else if(tan < 8){
-				resp = new ImagemPeca(peca.getImagemVret1(),this.jogo.getPosicaoA().getPosicaoX(),this.jogo.getPosicaoA().getPosicaoY());
+				if(peca.getLadoA()==jogo.getLadoA()){
+					resp = new ImagemPeca(peca.getImagemVret1(),this.jogo.getPosicaoA().getPosicaoX(),this.jogo.getPosicaoA().getPosicaoY());
+				}
+				else{
+					resp = new ImagemPeca(peca.getImagemVret2(),this.jogo.getPosicaoA().getPosicaoX(),this.jogo.getPosicaoA().getPosicaoY());
+				}
 				if(tan == 7){
 					this.jogo.getPosicaoA().setPosicaoX(-80);
 					//this.jogo.getPosicaoA().setPosicaoCarrocaX(-41);
@@ -141,7 +150,12 @@ public class ControleJogo {
 				}
 			}
 			else{
-				resp = new ImagemPeca(peca.getImagemHor1(),this.jogo.getPosicaoA().getPosicaoX(),this.jogo.getPosicaoA().getPosicaoY());
+				if(peca.getLadoA()==jogo.getLadoA()){
+					resp = new ImagemPeca(peca.getImagemHor2(),this.jogo.getPosicaoA().getPosicaoX(),this.jogo.getPosicaoA().getPosicaoY());
+				}
+				else{
+					resp = new ImagemPeca(peca.getImagemHor1(),this.jogo.getPosicaoA().getPosicaoX(),this.jogo.getPosicaoA().getPosicaoY());
+				}
 				this.jogo.getPosicaoA().setPosicaoX(-82);
 				this.jogo.getPosicaoA().setPosicaoCarrocaX(-81);
 			}
@@ -152,7 +166,7 @@ public class ControleJogo {
 	
 	private ImagemPeca posicionarPecaLadoB(Peca peca) {
 		ImagemPeca resp = null;
-		int tan = jogo.getTabuleiro().getImagens().tamanho();
+		int tan = this.jogo.getTabuleiro().getTanLadoB();
 		if (peca.isCarroca()) {
 			if (tan < 6){
 				resp = new ImagemPeca(peca.getImagemVret1(),this.jogo.getPosicaoB().getPosicaoCarrocaX(),this.jogo.getPosicaoB().getPosicaoCarrocaY());
@@ -191,7 +205,12 @@ public class ControleJogo {
 		}
 		else {
 			if (tan < 6){
-				resp = new ImagemPeca(peca.getImagemHor1(),this.jogo.getPosicaoB().getPosicaoX(),this.jogo.getPosicaoB().getPosicaoY());
+				if(peca.getLadoA()==jogo.getLadoB()){
+					resp = new ImagemPeca(peca.getImagemHor2(),this.jogo.getPosicaoB().getPosicaoX(),this.jogo.getPosicaoB().getPosicaoY());
+				}
+				else{
+					resp = new ImagemPeca(peca.getImagemHor1(),this.jogo.getPosicaoB().getPosicaoX(),this.jogo.getPosicaoB().getPosicaoY());
+				}
 					if(tan == 5){
 						this.jogo.getPosicaoB().setPosicaoCarrocaX(-42);
 						this.jogo.getPosicaoB().setPosicaoCarrocaY(-15);
@@ -212,7 +231,12 @@ public class ControleJogo {
 					}
 			}
 			else if(tan < 8){
-				resp = new ImagemPeca(peca.getImagemVret1(),this.jogo.getPosicaoB().getPosicaoX(),this.jogo.getPosicaoB().getPosicaoY());
+				if(peca.getLadoA()==jogo.getLadoB()){
+					resp = new ImagemPeca(peca.getImagemVret2(),this.jogo.getPosicaoB().getPosicaoX(),this.jogo.getPosicaoB().getPosicaoY());
+				}
+				else{
+					resp = new ImagemPeca(peca.getImagemVret1(),this.jogo.getPosicaoB().getPosicaoX(),this.jogo.getPosicaoB().getPosicaoY());
+				}
 				if(tan == 7){
 					this.jogo.getPosicaoB().setPosicaoX(40);
 					this.jogo.getPosicaoB().setPosicaoCarrocaX(41);
@@ -224,7 +248,12 @@ public class ControleJogo {
 				}
 			}
 			else{
-				resp = new ImagemPeca(peca.getImagemHor1(),this.jogo.getPosicaoB().getPosicaoX(),this.jogo.getPosicaoB().getPosicaoY());
+				if(peca.getLadoA()==jogo.getLadoB()){
+					resp = new ImagemPeca(peca.getImagemHor2(),this.jogo.getPosicaoB().getPosicaoX(),this.jogo.getPosicaoB().getPosicaoY());
+				}
+				else{
+					resp = new ImagemPeca(peca.getImagemHor1(),this.jogo.getPosicaoB().getPosicaoX(),this.jogo.getPosicaoB().getPosicaoY());
+				}
 				this.jogo.getPosicaoB().setPosicaoX(80);
 				this.jogo.getPosicaoB().setPosicaoCarrocaX(80);
 			}
@@ -233,13 +262,22 @@ public class ControleJogo {
 		return resp;
 	}
 
-	public void jogarTabuleito(Peca peca) {
-		ImagemPeca imagem = this.posicionarPecaLadoB(peca);
+	public void jogarTabuleito(Jogada jogada) {
+		ImagemPeca imagem;
+		if(jogada.getLado().equals("a")){
+			imagem = this.posicionarPecaLadoA(jogada.getPeca());
+			jogo.getTabuleiro().setTanLadoA(1);
+		}
+		else{
+			imagem = this.posicionarPecaLadoB(jogada.getPeca());
+			jogo.getTabuleiro().setTanLadoB(1);
+			
+		}
 		jogo.getTabuleiro().getImagens().incluir(imagem);
 		jogo.getTabuleiro().repaint();
-		//System.out.println(String.valueOf(jogo.getTabuleiro().getPecas()
-			//	.tamanho()));
-
+		System.out.println(this.jogo.getTabuleiro().getTanLadoA()+" "+this.jogo.getTabuleiro().getTanLadoB());
+		
+		
 	}
 
 	public Tabuleiro getTabuleiro() {
@@ -249,5 +287,6 @@ public class ControleJogo {
 	public Humano getJogador1() {
 		return jogo.getJogador1();
 	}
-
+	
+	
 }

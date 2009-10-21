@@ -3,13 +3,12 @@ package GUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Negocios.Humano;
-import Negocios.Jogador;
+import Negocios.Jogada;
 import Negocios.Controle.ControleJogo;
 
 public class GUIJogadorHumano extends GUIJogador {
@@ -45,6 +44,7 @@ public class GUIJogadorHumano extends GUIJogador {
 
 	public class Acao1 implements ActionListener {
 		private int peca;
+		private String lado;
 
 		public Acao1(int peca) {
 			this.peca = peca;
@@ -54,7 +54,17 @@ public class GUIJogadorHumano extends GUIJogador {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			ControleJogo jog = ControleJogo.getControleJogo();
-			jog.jogarTabuleito(jog.jogadaJog1(peca));
+			String[] botoes = {"LadoA","LadoB"};  
+			int i = JOptionPane.showOptionDialog(null,"Informe o lado","Lado da Jogada",JOptionPane.NO_OPTION,JOptionPane.QUESTION_MESSAGE,  
+			                 null,botoes,null);
+			if(i==0){
+				lado="a";
+			}
+			else{
+				lado="b";
+			}
+			Jogada jogada = new Jogada(lado,jog.jogadaJog1(peca));
+			jog.jogarTabuleito(jogada);
 		}
 
 	}
