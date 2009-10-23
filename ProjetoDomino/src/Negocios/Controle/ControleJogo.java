@@ -1,5 +1,7 @@
 package Negocios.Controle;
 
+import javax.swing.JOptionPane;
+
 import GUI.Tabuleiro;
 import Negocios.Humano;
 import Negocios.ImagemPeca;
@@ -305,6 +307,56 @@ public class ControleJogo {
 			}
 		}
 	}
+	
+	public void partida(){
+		boolean terminou = false;
+
+		while (!terminou) {
+
+			try {
+				jogo.getPecas().procurar(jogo.getLadoA(), jogo.getLadoB());
+				while (!jogo.getJogador1().isJogou()) {
+
+				}
+				this.getJogo().getJogador1().setJogou(false);
+				
+			} catch (NaoTemPecaException e1) {
+				JOptionPane.showMessageDialog(null, "O Jogador 1 Passou a Vez",
+						"Passa Vez", javax.swing.JOptionPane.WARNING_MESSAGE);
+			}
+						
+			try {
+				this.jogadaJog2();
+			} catch (NaoTemPecaException e) {
+				JOptionPane.showMessageDialog(null, "O Jogador 2 Passou a Vez",
+						"Passa Vez", javax.swing.JOptionPane.WARNING_MESSAGE);
+				
+			} catch (PecaInvalidaException e) {
+				e.printStackTrace();
+			}
+			try {
+				this.jogadaJog3();
+			} catch (NaoTemPecaException e) {
+				JOptionPane.showMessageDialog(null, "O Jogador 4 Passou a Vez",
+						"Passa Vez", javax.swing.JOptionPane.WARNING_MESSAGE);
+				
+			} catch (PecaInvalidaException e) {
+				e.printStackTrace();
+			}
+			
+			try {
+				this.jogadaJog4();
+			} catch (NaoTemPecaException e) {
+				JOptionPane.showMessageDialog(null, "O Jogador 3 Passou a Vez",
+						"Passa Vez", javax.swing.JOptionPane.WARNING_MESSAGE);
+				
+			} catch (PecaInvalidaException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+	
 
 	public Tabuleiro getTabuleiro() {
 		return jogo.getTabuleiro();

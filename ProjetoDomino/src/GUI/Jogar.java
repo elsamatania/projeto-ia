@@ -44,40 +44,7 @@ public class Jogar {
 		frame.setSize(1370, 740);
 		frame.setVisible(true);
 
-		boolean terminou = false;
-
-		while (!terminou) {
-
-			while (!jogo.getJogo().getJogador1().isJogou()) {
-
-			}
-			
-			jogo.getJogo().getJogador1().setJogou(false);
-			
-			try {
-				jogo.jogadaJog2();
-			} catch (NaoTemPecaException e) {
-				JOptionPane.showMessageDialog(null, "O Jogador 2 Passou a Vez",
-						"Passa Vez", javax.swing.JOptionPane.WARNING_MESSAGE);
-				e.printStackTrace();
-			}
-			try {
-				jogo.jogadaJog3();
-			} catch (NaoTemPecaException e) {
-				JOptionPane.showMessageDialog(null, "O Jogador 4 Passou a Vez",
-						"Passa Vez", javax.swing.JOptionPane.WARNING_MESSAGE);
-				e.printStackTrace();
-			}
-			
-			try {
-				jogo.jogadaJog4();
-			} catch (NaoTemPecaException e) {
-				JOptionPane.showMessageDialog(null, "O Jogador 3 Passou a Vez",
-						"Passa Vez", javax.swing.JOptionPane.WARNING_MESSAGE);
-				e.printStackTrace();
-			}
-		}
-
+		jogo.partida();
 	}
 
 	public static void main(String args[]) throws PecaInvalidaException {
