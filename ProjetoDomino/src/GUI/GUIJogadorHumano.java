@@ -1,5 +1,7 @@
 package GUI;
 
+import static javax.swing.JOptionPane.showMessageDialog;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,6 +12,7 @@ import javax.swing.JPanel;
 import Negocios.Humano;
 import Negocios.Jogada;
 import Negocios.Controle.ControleJogo;
+import Negocios.Controle.Excessao.PecaInvalidaException;
 
 public class GUIJogadorHumano extends GUIJogador {
 
@@ -33,38 +36,46 @@ public class GUIJogadorHumano extends GUIJogador {
 		painel.add(botao6);
 	
 
-		botao1.addActionListener(new Acao1(jog.getJogo().procurar(0).getId()));
-		botao2.addActionListener(new Acao1(jog.getJogo().procurar(1).getId()));
-		botao3.addActionListener(new Acao1(jog.getJogo().procurar(2).getId()));
-		botao4.addActionListener(new Acao1(jog.getJogo().procurar(3).getId()));
-		botao5.addActionListener(new Acao1(jog.getJogo().procurar(4).getId()));
-		botao6.addActionListener(new Acao1(jog.getJogo().procurar(5).getId()));
+		botao1.addActionListener(new Acao1(jog.getJogo().procurar(0).getId(),botao1));
+		botao2.addActionListener(new Acao1(jog.getJogo().procurar(1).getId(),botao2));
+		botao3.addActionListener(new Acao1(jog.getJogo().procurar(2).getId(),botao3));
+		botao4.addActionListener(new Acao1(jog.getJogo().procurar(3).getId(),botao4));
+		botao5.addActionListener(new Acao1(jog.getJogo().procurar(4).getId(),botao5));
+		botao6.addActionListener(new Acao1(jog.getJogo().procurar(5).getId(),botao6));
 
 	}
 
 	public class Acao1 implements ActionListener {
 		private int peca;
 		private String lado;
+		private JButton botao;
 
-		public Acao1(int peca) {
+		public Acao1(int peca,JButton botao) {
 			this.peca = peca;
-			
+			this.botao = botao;
 		}
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			ControleJogo jog = ControleJogo.getControleJogo();
-			String[] botoes = {"LadoA","LadoB"};  
+			String[] botoes = {"<= LadoA","LadoB =>"};  
 			int i = JOptionPane.showOptionDialog(null,"Informe o lado","Lado da Jogada",JOptionPane.NO_OPTION,JOptionPane.QUESTION_MESSAGE,  
 			                 null,botoes,null);
 			if(i==0){
-				lado="a";
-			}
-			else{
 				lado="b";
 			}
+			else{
+				lado="a";
+			}
 			Jogada jogada = new Jogada(lado,jog.jogadaJog1(peca));
-			jog.jogarTabuleito(jogada);
+			//jog.jogarTabuleiro(jogada);
+			try {
+				jog.jogarPeca(jogada);
+				jog.getJogo().getJogador1().setJogou(true);
+				botao.setVisible(false);
+			} catch (PecaInvalidaException e) {
+				JOptionPane.showMessageDialog(null, "Jogada Invalida","Atenção",JOptionPane.WARNING_MESSAGE);
+			}
 		}
 
 	}

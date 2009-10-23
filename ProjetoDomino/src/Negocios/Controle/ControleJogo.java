@@ -7,6 +7,8 @@ import Negocios.Jogada;
 import Negocios.Jogo;
 import Negocios.Maquina;
 import Negocios.Peca;
+import Negocios.Controle.Excessao.NaoTemPecaException;
+import Negocios.Controle.Excessao.PecaInvalidaException;
 import Repositorio.Repositorio;
 
 public class ControleJogo {
@@ -31,16 +33,16 @@ public class ControleJogo {
 		return jogo.getJogador1().jogar(id);
 	}
 
-	public Jogada jogadaJog2(int ladoA, int ladoB) {
-		return jogo.getJogador2().jogar(ladoA, ladoB);
+	public void jogadaJog2() throws NaoTemPecaException, PecaInvalidaException {
+		jogarPeca(jogo.getJogador2().jogar(jogo.getLadoA(), jogo.getLadoB()));
 	}
 
-	public Jogada jogadaJog3(int ladoA, int ladoB) {
-		return jogo.getJogador3().jogar(ladoA, ladoB);
+	public void jogadaJog3() throws NaoTemPecaException, PecaInvalidaException {
+		jogarPeca(jogo.getJogador3().jogar(jogo.getLadoA(), jogo.getLadoB()));
 	}
 
-	public Jogada jogadaJog4(int ladoA, int ladoB) {
-		return jogo.getJogador4().jogar(ladoA, ladoB);
+	public void jogadaJog4() throws NaoTemPecaException, PecaInvalidaException {
+		jogarPeca(jogo.getJogador4().jogar(jogo.getLadoA(),jogo.getLadoB()));
 	}
 
 	public void receberPecas(Repositorio pecas) {
@@ -63,7 +65,7 @@ public class ControleJogo {
 		Peca peca;
 		int posicao;
 		Repositorio resp = new Repositorio();
-		for (int i = 0; i < 7; i++) {
+		for (int i = 0; i < 6; i++) {
 			posicao = (int) (jogo.getPecas().tamanho() * Math.random());
 			peca = jogo.getPecas().procurar(posicao);
 			jogo.getPecas().excluir(posicao);
@@ -98,7 +100,7 @@ public class ControleJogo {
 				resp = new ImagemPeca(peca.getImagemHor1(),this.jogo.getPosicaoA().getPosicaoCarrocaX(),this.jogo.getPosicaoA().getPosicaoCarrocaY());
 				if(tan == 7){
 					this.jogo.getPosicaoA().setPosicaoCarrocaX(-40);
-					this.jogo.getPosicaoA().setPosicaoX(-82);
+					this.jogo.getPosicaoA().setPosicaoX(-122);
 					//this.jogo.getPosicaoA().setPosicaoY(40);
 				}
 				else{
@@ -177,12 +179,8 @@ public class ControleJogo {
 				}
 				else{
 					this.jogo.getPosicaoB().setPosicaoCarrocaX(-40);
-					if(tan == 0){
-						this.jogo.getPosicaoB().setPosicaoX(-82);
-					}
-					else{
-						this.jogo.getPosicaoB().setPosicaoX(-40);
-					}
+					this.jogo.getPosicaoB().setPosicaoX(-40);
+					
 				}
 			}
 			else if(tan < 8){
@@ -220,14 +218,8 @@ public class ControleJogo {
 					}
 					else{
 						this.jogo.getPosicaoB().setPosicaoX(-82);
-						if(tan==0){
-							this.jogo.getPosicaoB().setPosicaoCarrocaX(-40);
-						}
-						else{
-							this.jogo.getPosicaoB().setPosicaoCarrocaX(-82);
-						}
-						
-						
+						this.jogo.getPosicaoB().setPosicaoCarrocaX(-82);
+											
 					}
 			}
 			else if(tan < 8){
@@ -262,7 +254,7 @@ public class ControleJogo {
 		return resp;
 	}
 
-	public void jogarTabuleito(Jogada jogada) {
+	public void jogarTabuleiro(Jogada jogada) {
 		ImagemPeca imagem;
 		if(jogada.getLado().equals("a")){
 			imagem = this.posicionarPecaLadoA(jogada.getPeca());
@@ -275,17 +267,51 @@ public class ControleJogo {
 		}
 		jogo.getTabuleiro().getImagens().incluir(imagem);
 		jogo.getTabuleiro().repaint();
-		System.out.println(this.jogo.getTabuleiro().getTanLadoA()+" "+this.jogo.getTabuleiro().getTanLadoB());
-		
-		
+	}
+	
+	public void jogarPeca(Jogada jogada)throws PecaInvalidaException{
+		if (jogo.getTabuleiro().getTanLadoA()==0&&jogo.getTabuleiro().getTanLadoB()==0){
+			jogada.setLado("a");
+			jogarTabuleiro(jogada);
+			jogo.setLadoA(jogada.getPeca().getLadoA());
+			jogo.setLadoB(jogada.getPeca().getLadoB());
+		}
+		else{
+			if(jogada.getLado().equals("a")){
+				if(jogo.getLadoA()==jogada.getPeca().getLadoA()){
+					jogarTabuleiro(jogada);
+					jogo.setLadoA(jogada.getPeca().getLadoB());
+				}
+				else if(jogo.getLadoA()==jogada.getPeca().getLadoB()){
+					jogarTabuleiro(jogada);
+					jogo.setLadoA(jogada.getPeca().getLadoA());
+				}
+				else{
+					throw new  PecaInvalidaException();
+				}
+			}
+			else {
+				if(jogo.getLadoB()==jogada.getPeca().getLadoB()){
+					jogarTabuleiro(jogada);
+					jogo.setLadoB(jogada.getPeca().getLadoA());
+				}
+				else if(jogo.getLadoB()==jogada.getPeca().getLadoA()){
+					jogarTabuleiro(jogada);
+					jogo.setLadoB(jogada.getPeca().getLadoB());
+				}
+				else{
+					throw new  PecaInvalidaException();
+				}
+			}
+		}
 	}
 
 	public Tabuleiro getTabuleiro() {
 		return jogo.getTabuleiro();
 	}
 
-	public Humano getJogador1() {
-		return jogo.getJogador1();
+	public Jogo getJogo() {
+		return this.jogo;
 	}
 	
 	

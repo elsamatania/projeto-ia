@@ -37,7 +37,7 @@ public class Jogo {
 	public Jogo() {
 		this.placar = new Placar();
 		this.posicaoA = new Posicao(540, 233, 540, 209);
-		this.posicaoB = new Posicao(458, 233, 458, 209);
+		this.posicaoB = new Posicao(458, 233, 500, 209);
 	}
 
 	public Humano getJogador1() {

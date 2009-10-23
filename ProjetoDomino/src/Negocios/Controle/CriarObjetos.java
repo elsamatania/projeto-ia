@@ -12,9 +12,9 @@ public class CriarObjetos {
 
 	private Repositorio pecas;
 	private Humano jog1 = new Humano("Fábio");
-	private Maquina jog2 = new Maquina("teste");
-	private Maquina jog3 = new Maquina("teste");
-	private Maquina jog4 = new Maquina("teste");
+	private Maquina jog2 = new Maquina("Máq 1");
+	private Maquina jog3 = new Maquina("Máq 2");
+	private Maquina jog4 = new Maquina("Máq 3");
 	private	Tabuleiro tab = new Tabuleiro(new ImageIcon("src/imagens/tabuleiro 1.jpg").getImage(), 1120, 500);
 
 	Peca peca1 = new Peca(1, new ImageIcon("src/imagens/pecasvert1/branco.jpg")

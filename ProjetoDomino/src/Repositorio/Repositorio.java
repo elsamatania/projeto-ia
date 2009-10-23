@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import Negocios.Jogada;
 import Negocios.Peca;
+import Negocios.Controle.Excessao.NaoTemPecaException;
 
 public class Repositorio {
 
@@ -27,8 +28,22 @@ public class Repositorio {
 		pecas.remove(ind);
 
 	}
+	
+	public void excluirId(int id){
+		boolean achei = false;
+		int tan = this.tamanho();
+		for (int i = 0; (i < tan && (!achei)); i++) {
+			if (this.procurar(i).getId() == id) {
+				this.excluir(i);
+				achei = true;
+			}
+
+		}
+
+	}
 
 	public Peca procurar(int ind) {
+		
 		Peca resp = pecas.get(ind);
 		return resp;
 
@@ -38,7 +53,7 @@ public class Repositorio {
 		Peca resp = null;
 		boolean achei = false;
 		int tan = this.tamanho();
-		for (int i = 0; (i < tan || (!achei)); i++) {
+		for (int i = 0; (i < tan && (!achei)); i++) {
 			if (this.procurar(i).getId() == id) {
 				resp = this.procurar(i);
 				achei = true;
@@ -53,11 +68,11 @@ public class Repositorio {
 		return pecas.size();
 	}
 
-	public Jogada procurar(int ladoA,int ladoB){
+	public Jogada procurar(int ladoA,int ladoB)throws NaoTemPecaException{
 		boolean achei = false;
 		int ind;
 		Jogada resp = null;
-		for(ind=0; (ind <= this.tamanho())&&(!achei);ind++){
+		for(ind=1; (ind < this.tamanho())&&(!achei);ind++){
 			if(ladoA==this.pecas.get(ind).getLadoA()||ladoA==this.pecas.get(ind).getLadoB()){
 				achei = true;
 				resp = new Jogada("a",this.procurar(ind));
@@ -66,6 +81,9 @@ public class Repositorio {
 				achei = true;
 				resp = new Jogada("b",this.procurar(ind));
 			}
+		}
+		if(resp==null){
+			throw new  NaoTemPecaException();
 		}
 		return resp;
 	}
