@@ -67,12 +67,22 @@ public class Repositorio {
 	public int tamanho() {
 		return pecas.size();
 	}
+	
+	public Peca procurarCarroca(int lado){
+		Peca resp = null;
+		for(int i=0;i < this.tamanho();i++){
+			if((this.pecas.get(i).isCarroca())&&(this.pecas.get(i).getLadoA()== lado)){
+				resp=this.pecas.get(i);
+			}
+		}
+		return resp;
+	}
 
 	public Jogada procurar(int ladoA,int ladoB)throws NaoTemPecaException{
 		boolean achei = false;
 		int ind;
 		Jogada resp = null;
-		for(ind=1; (ind < this.tamanho())&&(!achei);ind++){
+		for(ind=0; (ind < this.tamanho())&&(!achei);ind++){
 			if(ladoA==this.pecas.get(ind).getLadoA()||ladoA==this.pecas.get(ind).getLadoB()){
 				achei = true;
 				resp = new Jogada("a",this.procurar(ind));

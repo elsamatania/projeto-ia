@@ -17,6 +17,7 @@ public class Jogo {
 	private Posicao posicaoB;
 	private Placar placar;
 	private Tabuleiro tabuleiro;
+	private String saida;
 
 	public Jogo(Humano jog1, Maquina jog2, Maquina jog3, Maquina jog4,
 			Repositorio pecas, Tabuleiro tabuleiro) {
@@ -31,6 +32,7 @@ public class Jogo {
 		this.posicaoA = new Posicao(519, 250, 540, 209);
 		this.posicaoB = new Posicao(519, 250, 540, 209);
 		this.tabuleiro = tabuleiro;
+		
 
 	}
 
@@ -38,6 +40,7 @@ public class Jogo {
 		this.placar = new Placar();
 		this.posicaoA = new Posicao(540, 233, 540, 209);
 		this.posicaoB = new Posicao(458, 233, 500, 209);
+		this.saida="inicio";
 	}
 
 	public Humano getJogador1() {
@@ -126,6 +129,14 @@ public class Jogo {
 
 	public Tabuleiro getTabuleiro() {
 		return tabuleiro;
+	}
+
+	public void setSaida(String saida) {
+		this.saida = saida;
+	}
+
+	public String getSaida() {
+		return saida;
 	}
 
 	

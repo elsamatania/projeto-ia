@@ -1,11 +1,14 @@
 package Negocios.Controle;
 
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 import GUI.Tabuleiro;
 import Negocios.Humano;
 import Negocios.ImagemPeca;
 import Negocios.Jogada;
+import Negocios.Jogador;
 import Negocios.Jogo;
 import Negocios.Maquina;
 import Negocios.Peca;
@@ -62,6 +65,81 @@ public class ControleJogo {
 		jogo.setJogador3(jog3);
 		jogo.setJogador4(jog4);
 	}
+	public ArrayList<Jogador> definirOrdem() {
+		ArrayList<Jogador> resp = new ArrayList<Jogador>();
+		if(jogo.getSaida().equals("inicio")){
+			definirOredemInicio(resp);
+		}
+		else{
+			definirOrdemMeio(resp);
+		}
+		
+		
+		return resp;
+	}
+
+	private void definirOrdemMeio(ArrayList<Jogador> resp) {
+		if(jogo.getSaida().equals("jogador1")){
+			resp.add(jogo.getJogador1());
+			resp.add(jogo.getJogador2());
+			resp.add(jogo.getJogador3());
+			resp.add(jogo.getJogador4());
+		}
+		else if(jogo.getSaida().equals("jogador2")){
+			resp.add(jogo.getJogador2());
+			resp.add(jogo.getJogador3());
+			resp.add(jogo.getJogador4());
+			resp.add(jogo.getJogador1());
+		}
+		else if(jogo.getSaida().equals("jogador3")){
+			resp.add(jogo.getJogador3());
+			resp.add(jogo.getJogador4());
+			resp.add(jogo.getJogador1());
+			resp.add(jogo.getJogador2());
+		}
+		if(jogo.getSaida().equals("jogador4")){
+			resp.add(jogo.getJogador4());
+			resp.add(jogo.getJogador1());
+			resp.add(jogo.getJogador2());
+			resp.add(jogo.getJogador3());
+		}
+	}
+
+	private void definirOredemInicio(ArrayList<Jogador> resp) {
+		boolean achou = false;
+		for(int i = 6;(i>0)&&(!achou);i--){
+			
+				if(jogo.getJogador1().getJogo().procurarCarroca(i)!=null){
+					achou = true;
+					resp.add(jogo.getJogador1());
+					resp.add(jogo.getJogador2());
+					resp.add(jogo.getJogador3());
+					resp.add(jogo.getJogador4());
+				}
+				else if((jogo.getJogador2().getJogo().procurarCarroca(i)!=null)){
+					achou = true;
+					resp.add(jogo.getJogador2());
+					resp.add(jogo.getJogador3());
+					resp.add(jogo.getJogador4());
+					resp.add(jogo.getJogador1());
+				}
+				else if((jogo.getJogador3().getJogo().procurarCarroca(i)!=null)){
+					achou = true;
+					resp.add(jogo.getJogador3());
+					resp.add(jogo.getJogador4());
+					resp.add(jogo.getJogador1());
+					resp.add(jogo.getJogador2());
+				}
+				else if(jogo.getJogador4().getJogo().procurarCarroca(i)!=null){
+					achou = true;
+					resp.add(jogo.getJogador4());
+					resp.add(jogo.getJogador1());
+					resp.add(jogo.getJogador2());
+					resp.add(jogo.getJogador3());
+				}
+		}
+	}
+	
 
 	public Repositorio escolherPecas() {
 		Peca peca;
@@ -118,7 +196,10 @@ public class ControleJogo {
 		}
 		else {
 			if (tan < 6){
-				if(peca.getLadoA()==jogo.getLadoA()){
+				if(jogo.getTabuleiro().getTanLadoA()==0){
+					resp = new ImagemPeca(peca.getImagemHor2(),this.jogo.getPosicaoA().getPosicaoX(),this.jogo.getPosicaoA().getPosicaoY());
+				}
+				else if(peca.getLadoA()==jogo.getLadoA()){
 					resp = new ImagemPeca(peca.getImagemHor1(),this.jogo.getPosicaoA().getPosicaoX(),this.jogo.getPosicaoA().getPosicaoY());
 				}
 				else{
@@ -308,54 +389,59 @@ public class ControleJogo {
 		}
 	}
 	
-	public void partida(){
+	public void partida1() {
 		boolean terminou = false;
-
-		while (!terminou) {
-
-			try {
-				jogo.getPecas().procurar(jogo.getLadoA(), jogo.getLadoB());
-				while (!jogo.getJogador1().isJogou()) {
-
+		ArrayList<Jogador> ordem = definirOrdem();
+		Humano humano;
+		Maquina maq;
+		int fecha=1;
+		while(!terminou){
+			for(int i=0;i<ordem.size();i++){
+				if(fecha<4){
+					if(ordem.get(i) instanceof Humano){
+						humano = (Humano) ordem.get(i);
+						try {
+							humano.getJogo().procurar(jogo.getLadoA(), jogo.getLadoB());
+							fecha=0;
+							while(!humano.isJogou()){
+							
+							}
+							humano.setJogou(false);
+							if(humano.getJogo().tamanho()==0){
+							terminou=true;
+							JOptionPane.showConfirmDialog(null,"Você venceu","Atençao",JOptionPane.WARNING_MESSAGE);
+							}
+						} catch (NaoTemPecaException e) {
+							JOptionPane.showConfirmDialog(null,"Voce passou vez lado1= "+jogo.getLadoA()+" lado2= "+jogo.getLadoB(),"Atençao",JOptionPane.WARNING_MESSAGE);
+							fecha++;
+						}
+					}
+					else{
+						maq = (Maquina) ordem.get(i);
+						try {
+							jogarPeca(maq.jogar(jogo.getLadoA(), jogo.getLadoB()));
+							fecha=0;
+							if(maq.getJogo().tamanho()==0){
+							terminou=true;
+							JOptionPane.showInternalMessageDialog(null,"O jogado: "+maq.getNome()+" venceu o jogo","Atençao",JOptionPane.WARNING_MESSAGE);
+							}
+							} catch (PecaInvalidaException e) {
+								
+							} catch (NaoTemPecaException e) {
+							JOptionPane.showMessageDialog(null,"O jogado: "+maq.getNome()+" passou a vez lado1= "+jogo.getLadoA()+" lado2= "+jogo.getLadoB(),"Atençao",JOptionPane.WARNING_MESSAGE);
+							fecha++;
+							}
+						}
 				}
-				this.getJogo().getJogador1().setJogou(false);
+				else{
+					JOptionPane.showMessageDialog(null,"O jogo Fechou","Atençao",JOptionPane.WARNING_MESSAGE);
+					terminou=true;
+				}
 				
-			} catch (NaoTemPecaException e1) {
-				JOptionPane.showMessageDialog(null, "O Jogador 1 Passou a Vez",
-						"Passa Vez", javax.swing.JOptionPane.WARNING_MESSAGE);
-			}
-						
-			try {
-				this.jogadaJog2();
-			} catch (NaoTemPecaException e) {
-				JOptionPane.showMessageDialog(null, "O Jogador 2 Passou a Vez",
-						"Passa Vez", javax.swing.JOptionPane.WARNING_MESSAGE);
-				
-			} catch (PecaInvalidaException e) {
-				e.printStackTrace();
-			}
-			try {
-				this.jogadaJog3();
-			} catch (NaoTemPecaException e) {
-				JOptionPane.showMessageDialog(null, "O Jogador 4 Passou a Vez",
-						"Passa Vez", javax.swing.JOptionPane.WARNING_MESSAGE);
-				
-			} catch (PecaInvalidaException e) {
-				e.printStackTrace();
-			}
-			
-			try {
-				this.jogadaJog4();
-			} catch (NaoTemPecaException e) {
-				JOptionPane.showMessageDialog(null, "O Jogador 3 Passou a Vez",
-						"Passa Vez", javax.swing.JOptionPane.WARNING_MESSAGE);
-				
-			} catch (PecaInvalidaException e) {
-				e.printStackTrace();
 			}
 		}
-
 	}
+	
 	
 
 	public Tabuleiro getTabuleiro() {

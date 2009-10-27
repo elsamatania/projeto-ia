@@ -16,6 +16,7 @@ public class CriarObjetos {
 	private Maquina jog3 = new Maquina("Máq 2");
 	private Maquina jog4 = new Maquina("Máq 3");
 	private	Tabuleiro tab = new Tabuleiro(new ImageIcon("src/imagens/tabuleiro 1.jpg").getImage(), 1120, 500);
+	
 
 	Peca peca1 = new Peca(1, new ImageIcon("src/imagens/pecasvert1/branco.jpg")
 			.getImage(), new ImageIcon("src/imagens/pecasvert2/branco.jpg")

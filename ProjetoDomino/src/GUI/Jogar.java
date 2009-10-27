@@ -4,11 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+
 
 import Negocios.Controle.ControleJogo;
 import Negocios.Controle.CriarObjetos;
-import Negocios.Controle.Excessao.NaoTemPecaException;
 import Negocios.Controle.Excessao.PecaInvalidaException;
 
 public class Jogar {
@@ -44,7 +43,7 @@ public class Jogar {
 		frame.setSize(1370, 740);
 		frame.setVisible(true);
 
-		jogo.partida();
+		jogo.partida1();
 	}
 
 	public static void main(String args[]) throws PecaInvalidaException {

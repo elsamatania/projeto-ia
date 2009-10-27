@@ -1,7 +1,5 @@
 package GUI;
 
-import static javax.swing.JOptionPane.showMessageDialog;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,8 +16,15 @@ public class GUIJogadorHumano extends GUIJogador {
 
 	private Humano jog;
 
-	public GUIJogadorHumano(Humano jog) {
+	public Humano getJog() {
+		return jog;
+	}
+
+	public void setJog(Humano jog) {
 		this.jog = jog;
+	}
+
+	public GUIJogadorHumano(Humano jog) {
 		this.painel = new JPanel();
 		this.botao1 = new JButton(jog.getJogo().procurar(0).getIcone());
 		this.botao2 = new JButton(jog.getJogo().procurar(1).getIcone());
@@ -58,7 +63,7 @@ public class GUIJogadorHumano extends GUIJogador {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			ControleJogo jog = ControleJogo.getControleJogo();
-			String[] botoes = {"<= LadoA","LadoB =>"};  
+			String[] botoes = {"<= Lado","Lado =>"};  
 			int i = JOptionPane.showOptionDialog(null,"Informe o lado","Lado da Jogada",JOptionPane.NO_OPTION,JOptionPane.QUESTION_MESSAGE,  
 			                 null,botoes,null);
 			if(i==0){
@@ -74,7 +79,7 @@ public class GUIJogadorHumano extends GUIJogador {
 				jog.getJogo().getJogador1().setJogou(true);
 				botao.setVisible(false);
 			} catch (PecaInvalidaException e) {
-				JOptionPane.showMessageDialog(null, "Jogada Invalida","Atenção",JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Jogada Invalida","Atenção",JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
 
