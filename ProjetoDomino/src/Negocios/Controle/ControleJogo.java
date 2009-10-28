@@ -324,10 +324,10 @@ public class ControleJogo {
 			}
 			else{
 				if(peca.getLadoA()==jogo.getLadoB()){
-					resp = new ImagemPeca(peca.getImagemHor2(),this.jogo.getPosicaoB().getPosicaoX(),this.jogo.getPosicaoB().getPosicaoY());
+					resp = new ImagemPeca(peca.getImagemHor1(),this.jogo.getPosicaoB().getPosicaoX(),this.jogo.getPosicaoB().getPosicaoY());
 				}
 				else{
-					resp = new ImagemPeca(peca.getImagemHor1(),this.jogo.getPosicaoB().getPosicaoX(),this.jogo.getPosicaoB().getPosicaoY());
+					resp = new ImagemPeca(peca.getImagemHor2(),this.jogo.getPosicaoB().getPosicaoX(),this.jogo.getPosicaoB().getPosicaoY());
 				}
 				this.jogo.getPosicaoB().setPosicaoX(80);
 				this.jogo.getPosicaoB().setPosicaoCarrocaX(80);
@@ -389,61 +389,7 @@ public class ControleJogo {
 		}
 	}
 	
-	public void partida1() {
-		boolean terminou = false;
-		ArrayList<Jogador> ordem = definirOrdem();
-		Humano humano;
-		Maquina maq;
-		int fecha=1;
-		while(!terminou){
-			for(int i=0;i<ordem.size();i++){
-				if(fecha<4){
-					if(ordem.get(i) instanceof Humano){
-						humano = (Humano) ordem.get(i);
-						try {
-							humano.getJogo().procurar(jogo.getLadoA(), jogo.getLadoB());
-							fecha=0;
-							while(!humano.isJogou()){
-							
-							}
-							humano.setJogou(false);
-							if(humano.getJogo().tamanho()==0){
-							terminou=true;
-							JOptionPane.showConfirmDialog(null,"Você venceu","Atençao",JOptionPane.WARNING_MESSAGE);
-							}
-						} catch (NaoTemPecaException e) {
-							JOptionPane.showConfirmDialog(null,"Voce passou vez lado1= "+jogo.getLadoA()+" lado2= "+jogo.getLadoB(),"Atençao",JOptionPane.WARNING_MESSAGE);
-							fecha++;
-						}
-					}
-					else{
-						maq = (Maquina) ordem.get(i);
-						try {
-							jogarPeca(maq.jogar(jogo.getLadoA(), jogo.getLadoB()));
-							fecha=0;
-							if(maq.getJogo().tamanho()==0){
-							terminou=true;
-							JOptionPane.showInternalMessageDialog(null,"O jogado: "+maq.getNome()+" venceu o jogo","Atençao",JOptionPane.WARNING_MESSAGE);
-							}
-							} catch (PecaInvalidaException e) {
-								
-							} catch (NaoTemPecaException e) {
-							JOptionPane.showMessageDialog(null,"O jogado: "+maq.getNome()+" passou a vez lado1= "+jogo.getLadoA()+" lado2= "+jogo.getLadoB(),"Atençao",JOptionPane.WARNING_MESSAGE);
-							fecha++;
-							}
-						}
-				}
-				else{
-					JOptionPane.showMessageDialog(null,"O jogo Fechou","Atençao",JOptionPane.WARNING_MESSAGE);
-					terminou=true;
-				}
-				
-			}
-		}
-	}
 	
-	
-
 	public Tabuleiro getTabuleiro() {
 		return jogo.getTabuleiro();
 	}

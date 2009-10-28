@@ -16,15 +16,9 @@ public class GUIJogadorHumano extends GUIJogador {
 
 	private Humano jog;
 
-	public Humano getJog() {
-		return jog;
-	}
-
-	public void setJog(Humano jog) {
-		this.jog = jog;
-	}
-
+	
 	public GUIJogadorHumano(Humano jog) {
+
 		this.painel = new JPanel();
 		this.botao1 = new JButton(jog.getJogo().procurar(0).getIcone());
 		this.botao2 = new JButton(jog.getJogo().procurar(1).getIcone());
@@ -39,15 +33,16 @@ public class GUIJogadorHumano extends GUIJogador {
 		painel.add(botao4);
 		painel.add(botao5);
 		painel.add(botao6);
-	
-
+		
+		
 		botao1.addActionListener(new Acao1(jog.getJogo().procurar(0).getId(),botao1));
 		botao2.addActionListener(new Acao1(jog.getJogo().procurar(1).getId(),botao2));
 		botao3.addActionListener(new Acao1(jog.getJogo().procurar(2).getId(),botao3));
 		botao4.addActionListener(new Acao1(jog.getJogo().procurar(3).getId(),botao4));
 		botao5.addActionListener(new Acao1(jog.getJogo().procurar(4).getId(),botao5));
 		botao6.addActionListener(new Acao1(jog.getJogo().procurar(5).getId(),botao6));
-
+		
+		
 	}
 
 	public class Acao1 implements ActionListener {
@@ -73,16 +68,25 @@ public class GUIJogadorHumano extends GUIJogador {
 				lado="a";
 			}
 			Jogada jogada = new Jogada(lado,jog.jogadaJog1(peca));
-			//jog.jogarTabuleiro(jogada);
+			
 			try {
 				jog.jogarPeca(jogada);
 				jog.getJogo().getJogador1().setJogou(true);
 				botao.setVisible(false);
+				jog.getJogo().getJogador1().excluirPeca(jogada.getPeca().getId());
 			} catch (PecaInvalidaException e) {
 				JOptionPane.showMessageDialog(null, "Jogada Invalida","Atenção",JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
 
 	}
+	public Humano getJog() {
+		return jog;
+	}
+
+	public void setJog(Humano jog) {
+		this.jog = jog;
+	}
+
 
 }

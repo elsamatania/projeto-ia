@@ -14,5 +14,17 @@ public class Maquina extends Jogador{
 		jogo.excluirId(resp.getPeca().getId());
 		return resp;
 	}
+	
+	public Jogada jogadaInicioJogo(int lado){
+		Jogada resp = null;
+		Peca peca = jogo.procurarCarroca(lado);
+		if (peca != null){
+			resp = new Jogada("a",peca);
+			jogo.excluirId(resp.getPeca().getId());
+			
+		}
+		return resp;
+		
+	}
 
 }

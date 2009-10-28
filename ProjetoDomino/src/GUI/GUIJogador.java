@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,7 +17,7 @@ public class GUIJogador {
 	protected JButton botao4;
 	protected JButton botao5;
 	protected JButton botao6;
-	
+	protected ArrayList<JButton> botoes = new ArrayList<JButton>();
 	
 	public GUIJogador(){
 		this.painel= new JPanel();
@@ -33,7 +34,15 @@ public class GUIJogador {
 		painel.add(botao5);
 		painel.add(botao6);
 		
+		botoes.add(botao1);
+		botoes.add(botao2);
+		botoes.add(botao3);
+		botoes.add(botao4);
+		botoes.add(botao5);
+		botoes.add(botao6);
+		
 	}
+	
 	public GUIJogador(GridLayout layout){
 		this.painel= new JPanel(layout);
 		this.botao1 = new JButton(new ImageIcon("src/imagens/peca 1 hor.jpg"));
@@ -50,63 +59,63 @@ public class GUIJogador {
 		painel.add(botao5);
 		painel.add(botao6);
 		
+		botoes.add(botao1);
+		botoes.add(botao2);
+		botoes.add(botao3);
+		botoes.add(botao4);
+		botoes.add(botao5);
+		botoes.add(botao6);
+		
 	}
 
 	public JPanel getPainel() {
 		return painel;
 	}
-
-	public void setPainel(JPanel painel) {
-		this.painel = painel;
+	public ArrayList<JButton> getBotoes() {
+		return botoes;
+	}
+	public void setBotoes(ArrayList<JButton> botoes) {
+		this.botoes = botoes;
 	}
 
 	public JButton getBotao1() {
 		return botao1;
 	}
-
 	public void setBotao1(JButton botao1) {
 		this.botao1 = botao1;
 	}
-
 	public JButton getBotao2() {
 		return botao2;
 	}
-
 	public void setBotao2(JButton botao2) {
 		this.botao2 = botao2;
 	}
-
 	public JButton getBotao3() {
 		return botao3;
 	}
-
 	public void setBotao3(JButton botao3) {
 		this.botao3 = botao3;
 	}
-
 	public JButton getBotao4() {
 		return botao4;
 	}
-
 	public void setBotao4(JButton botao4) {
 		this.botao4 = botao4;
 	}
-
 	public JButton getBotao5() {
 		return botao5;
 	}
-
 	public void setBotao5(JButton botao5) {
 		this.botao5 = botao5;
 	}
-
 	public JButton getBotao6() {
 		return botao6;
 	}
-
 	public void setBotao6(JButton botao6) {
 		this.botao6 = botao6;
 	}
-
+	public void setPainel(JPanel painel) {
+		this.painel = painel;
+	}
 	
 }

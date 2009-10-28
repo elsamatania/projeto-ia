@@ -12,8 +12,11 @@ public class Humano extends Jogador {
 
 	public Peca jogar(int id) {
 		Peca resp = this.jogo.procurarId(id);
-		jogo.excluirId(id);
 		return resp;
+	}
+	
+	public void excluirPeca(int id){
+		jogo.excluirId(id);
 	}
 
 	public void setJogou(boolean jogou) {
