@@ -2,9 +2,8 @@ package Negocios.Controle;
 
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-
 import GUI.Tabuleiro;
+import Negocios.Dados;
 import Negocios.Humano;
 import Negocios.ImagemPeca;
 import Negocios.Jogada;
@@ -20,10 +19,12 @@ public class ControleJogo {
 
 	private Jogo jogo;
 	private static ControleJogo controleJogo = new ControleJogo();
+	Dados dados;
 	
 
 	private ControleJogo() {
 		jogo = new Jogo();
+		dados = new Dados();
 	}
 
 	public static ControleJogo getControleJogo() {
@@ -339,6 +340,7 @@ public class ControleJogo {
 
 	public void jogarTabuleiro(Jogada jogada) {
 		ImagemPeca imagem;
+		dados.setNPecas();
 		if(jogada.getLado().equals("a")){
 			imagem = this.posicionarPecaLadoA(jogada.getPeca());
 			jogo.getTabuleiro().setTanLadoA(1);
@@ -350,6 +352,79 @@ public class ControleJogo {
 		}
 		jogo.getTabuleiro().getImagens().incluir(imagem);
 		jogo.getTabuleiro().repaint();
+		if(jogada.getPeca().isCarroca()){
+			switch(jogada.getPeca().getLadoA()){
+			case 0:
+				dados.setBranco();
+			break;
+			case 1:
+				dados.setPio();
+			break;
+			case 2:
+				dados.setDuke();
+			break;
+			case 3:
+				dados.setTerno();
+			break;
+			case 4:
+				dados.setQuadra();
+			break;
+			case 5:
+				dados.setQuina();
+			break;
+			case 6:
+				dados.setSena();
+			break;
+			}
+		}
+		else{
+			switch(jogada.getPeca().getLadoA()){
+			case 0:
+				dados.setBranco();
+			break;
+			case 1:
+				dados.setPio();
+			break;
+			case 2:
+				dados.setDuke();
+			break;
+			case 3:
+				dados.setTerno();
+			break;
+			case 4:
+				dados.setQuadra();
+			break;
+			case 5:
+				dados.setQuina();
+			break;
+			case 6:
+				dados.setSena();
+			break;
+			}
+			switch(jogada.getPeca().getLadoB()){
+			case 0:
+				dados.setBranco();
+			break;
+			case 1:
+				dados.setPio();
+			break;
+			case 2:
+				dados.setDuke();
+			break;
+			case 3:
+				dados.setTerno();
+			break;
+			case 4:
+				dados.setQuadra();
+			break;
+			case 5:
+				dados.setQuina();
+			break;
+			case 6:
+				dados.setSena();
+			break;
+			}
+		}
 	}
 	
 	public void jogarPeca(Jogada jogada)throws PecaInvalidaException{
@@ -396,6 +471,10 @@ public class ControleJogo {
 
 	public Jogo getJogo() {
 		return this.jogo;
+	}
+	
+	public Dados getDados(){
+		return dados;
 	}
 	
 	
