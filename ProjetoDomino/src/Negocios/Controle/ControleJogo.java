@@ -39,18 +39,6 @@ public class ControleJogo {
 		return jogo.getJogador1().jogar(id);
 	}
 
-	public void jogadaJog2() throws NaoTemPecaException, PecaInvalidaException {
-		jogarPeca(jogo.getJogador2().jogar(jogo.getLadoA(), jogo.getLadoB()));
-	}
-
-	public void jogadaJog3() throws NaoTemPecaException, PecaInvalidaException {
-		jogarPeca(jogo.getJogador3().jogar(jogo.getLadoA(), jogo.getLadoB()));
-	}
-
-	public void jogadaJog4() throws NaoTemPecaException, PecaInvalidaException {
-		jogarPeca(jogo.getJogador4().jogar(jogo.getLadoA(),jogo.getLadoB()));
-	}
-
 	public void receberPecas(Repositorio pecas) {
 		jogo.setPecas(pecas);
 	}

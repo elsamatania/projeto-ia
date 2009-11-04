@@ -212,7 +212,7 @@ public class Jogar {
 				maquinaJogarPrimeiraPeca(maq);
 			}
 			else{
-				jogo.jogarPeca(maq.jogar(jogo.getJogo().getLadoA(), jogo.getJogo().getLadoB()));
+				jogo.jogarPeca(maq.jogar(jogo.getJogo().getLadoA(), jogo.getJogo().getLadoB(),jogo.getDados()));
 			}
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
