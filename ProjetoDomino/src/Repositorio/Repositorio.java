@@ -104,6 +104,7 @@ public class Repositorio {
 			if(ladoA==this.pecas.get(i).getLadoA()||ladoA==this.pecas.get(i).getLadoB()){
 				Jogada jogada = new Jogada("a",this.pecas.get(i));
 				resp.incluir(jogada);
+				
 			}
 			else if(ladoB==this.pecas.get(i).getLadoA()||ladoB==this.pecas.get(i).getLadoB()){
 				Jogada jogada = new Jogada("b",this.pecas.get(i));

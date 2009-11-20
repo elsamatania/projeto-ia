@@ -15,6 +15,10 @@ public class Dados {
 	private RepositorioToques jogador2;
 	private RepositorioToques jogador3;
 	private RepositorioToques jogador4;
+	private int pecasJogador1;
+	private int pecasJogador2;
+	private int pecasJogador3;
+	private int pecasJogador4;
 	private int nPecas;
 	
 	public Dados(){
@@ -30,6 +34,10 @@ public class Dados {
 		this.jogador3 = new RepositorioToques();
 		this.jogador4 = new RepositorioToques();
 		this.nPecas = 0;
+		this.pecasJogador1 = 6;
+		this.pecasJogador2 = 6;
+		this.pecasJogador3 = 6;
+		this.pecasJogador4 = 6;
 	}
 	
 	public int getBranco() {
@@ -126,6 +134,38 @@ public class Dados {
 
 	public void setNPecas() {
 		++this.nPecas;
+	}
+
+	public int getPecasJogador1() {
+		return pecasJogador1;
+	}
+
+	public void setPecasJogador1(int pecasJogador1) {
+		this.pecasJogador1 = pecasJogador1;
+	}
+
+	public int getPecasJogador2() {
+		return pecasJogador2;
+	}
+
+	public void setPecasJogador2(int pecasJogador2) {
+		this.pecasJogador2 = pecasJogador2;
+	}
+
+	public int getPecasJogador3() {
+		return pecasJogador3;
+	}
+
+	public void setPecasJogador3(int pecasJogador3) {
+		this.pecasJogador3 = pecasJogador3;
+	}
+
+	public int getPecasJogador4() {
+		return pecasJogador4;
+	}
+
+	public void setPecasJogador4(int pecasJogador4) {
+		this.pecasJogador4 = pecasJogador4;
 	}
 
 	

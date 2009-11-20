@@ -30,5 +30,13 @@ public  class Jogador {
 		this.jogo = jogo;
 	}
 	
+	public int contarJogo(){
+		int resp = 0;
+		for(int i=0;i<jogo.tamanho();i++){
+			resp = resp + jogo.procurar(i).getValor();
+		}
+		return resp;
+	}
+	
 
 }

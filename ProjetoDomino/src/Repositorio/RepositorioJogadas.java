@@ -12,7 +12,9 @@ public class RepositorioJogadas {
 	}
 
 	public void incluir(Jogada jogada) {
-		if (this.procurar(jogada)>-1){
+		
+		if (this.procurar(jogada)== -1){
+			
 			this.jogadas.add(jogada);
 		}
 		
@@ -40,6 +42,7 @@ public class RepositorioJogadas {
 			if (this.jogadas.get(i).equals(jogada)) {
 				achei = true;
 				resp=i;
+				
 			}
 
 		}
@@ -51,5 +54,16 @@ public class RepositorioJogadas {
 		return jogadas.size();
 	}
 	
+	public void excluirLado(int lado){
+		boolean achei = false;
+		int tan = this.tamanho();
+		for (int i = 0; (i < tan && (!achei)); i++) {
+			if (this.jogadas.get(i).getLado().equals(lado)) {
+				achei = true;
+				this.excluir(this.jogadas.get(i));				
+			}
+
+		}
+	}
 
 }
