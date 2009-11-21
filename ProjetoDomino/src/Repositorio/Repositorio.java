@@ -113,5 +113,15 @@ public class Repositorio {
 		}
 		return resp;
 	}
+	
+	public int contarPecas(int lado){
+		int resp = 0;
+		for(int i=0;i<this.tamanho();i++){
+			if(this.procurar(i).getLadoA()==lado||this.procurar(i).getLadoB()==lado){
+				resp++;
+			}
+		}
+		return resp;
+	}
 
 }

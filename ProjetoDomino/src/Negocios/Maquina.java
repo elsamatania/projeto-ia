@@ -12,6 +12,11 @@ public class Maquina extends Jogador{
 		
 	}
 
+	/*
+	 * Nesta parte esta toda inteligencia da máquina ele recebe os lados possiveis um objeto com os dados
+	 * de historico do jogo, quantidade de peças ja jogada e toque dos jogadores 
+	 */
+	
 	public Jogada jogar(int ladoA,int ladoB,Dados dados)throws NaoTemPecaException{
 		RepositorioJogadas possibilidades = jogo.jogadas(ladoA, ladoB);
 		this.ordenar(possibilidades);
@@ -36,28 +41,313 @@ public class Maquina extends Jogador{
 				if(((lA!=5) && (lB!=5))||((lA==5) && (lB==5))){//se as duas não tiver possibilidade de cruzada escolher aleatóriamante ou se os dois teverem possibilidade.
 					resp= possibilidades.procurarInd(possibilidades.tamanho()*(int)Math.random());
 				}
-				else if(lA==5){
-					possibilidades.excluirLado(ladoA);
-					resp = possibilidades.procurarInd(1);
+				else if(lA==5){//caso só haja no lado A ele excluir a jogada do lado A e joga a qua ficou no lado B
+					possibilidades.excluirLado("a");
+					resp = possibilidades.procurarInd(0);
 				}
-				else{
-					possibilidades.excluirLado(ladoB);
-					resp = possibilidades.procurarInd(1);
+				else{//caso só haja no lado B ele excluir a jogada do lado B e joga a qua ficou no lado A
+					possibilidades.excluirLado("b");
+					resp = possibilidades.procurarInd(0);
 				}
 			}
 			else{
-				ArrayList carrocas = verificarCarrocas(possibilidades);
+				ArrayList<Jogada> carrocas = verificarCarrocas(possibilidades);
 				boolean jogou = false;
-				for(int i = 0; i< carrocas.size();i++){
-					
+				for(int i = 0; (i< carrocas.size())&&(!jogou);i++){//descobrir se existe alguma carroça com perigo de fuzilamento
+					//caso tenha 5 peças ja no tab. e nenhuma na mão pode ser fusilada então jogar logo.
+					if((jogo.contarPecas(carrocas.get(i).getPeca().getLadoA())==0)&&(this.contarPecasTabuleiro(carrocas.get(i).getPeca().getLadoA(), dados)==5)){
+						resp = carrocas.get(i);
+						jogou = true;
+					}
 				}
-				
+				if(!jogou){//caso não haja carroça a ser fusilada e a jogada nã tenha sido feita
+					int ladoATab = this.contarPecasTabuleiro(ladoA, dados); 
+					int ladoBTab = this.contarPecasTabuleiro(ladoB, dados);
+					int ladoAMao = jogo.contarPecas(ladoA);
+					int ladoBMao = jogo.contarPecas(ladoB);
+					int totalA = ladoATab + ladoAMao;
+					int totalB = ladoBTab + ladoBMao;
+					//inicio if chicote
+					if(totalA==7){//encontrou um chicote no tabuleiro vai tentar manter e se puder levantar do outro lado(if chicote lado A)
+						//caso tenha um chicote com 2 na mão e dua peças fazer dois lados iguais para fzer a cruzada
+						//ou caso tenha mais de duas, fazer dois lados iguais provocar um toque geral, matar uma cabeça na rodada e ficar com outro lado chicoteado.
+						if((ladoAMao==2)&&(possibilidades.acharJogada("b", ladoA)!=null)&&(jogo.tamanho()==2)||(ladoAMao>2)&&(possibilidades.acharJogada("b", ladoA)!=null)){
+							resp=possibilidades.acharJogada("b", ladoA);
+						}
+						else if(possibilidades.existeLado("b")){
+							possibilidades.excluirLado("a");//exclui todas jogadas do lado onde ele tem o chicote para guarda-lo
+							carrocas = verificarCarrocas(possibilidades);//da prioridade a jogar uma carroça do lado oposto ao chicote
+							if(carrocas.size()>0){
+								resp = carrocas.get(0);
+							}
+							else{
+								//encontra a peca que le tem em maior quantidade e joga.
+								int contaMaior = 0;
+								int maior = 0;
+								for(int i = 0; i < possibilidades.tamanho();i++){
+									int atual = ladoB == possibilidades.procurarInd(i).getPeca().getLadoA()?possibilidades.procurarInd(i).getPeca().getLadoB():possibilidades.procurarInd(i).getPeca().getLadoA();
+									int contar = jogo.contarPecas(atual);
+									if(contar > contaMaior){
+										maior = atual;
+									}
+								}
+								resp = possibilidades.acharJogada("b", maior);
+							}
+						}
+						else{//se só tever como jogar do lado a 
+							carrocas = verificarCarrocas(possibilidades);//da prioridade a jogar uma carroça do lado do chicote e mante-lo
+							if(carrocas.size()>0){
+								resp = carrocas.get(0);
+							}
+							else{
+								//encontra a peca que le tem em maior quantidade e joga.
+								int contaMaior = 0;
+								int maior = 0;
+								for(int i = 0; i < possibilidades.tamanho();i++){
+									int atual = ladoB == possibilidades.procurarInd(i).getPeca().getLadoA()?possibilidades.procurarInd(i).getPeca().getLadoB():possibilidades.procurarInd(i).getPeca().getLadoA();
+									int contar = jogo.contarPecas(atual);
+									if(contar > contaMaior){
+										maior = atual;
+									}
+								}
+								resp = possibilidades.acharJogada("b", maior);
+							}
+						}
+					}//(fim if chicote lado A)
+					//if chicote lado B
+					else if(totalB==7){
+						//caso tenha um chicote com 2 na mão e dua peças fazer dois lados iguais para fzer a cruzada
+						//ou caso tenha mais de duas, fazer dois lados iguais provocar um toque geral, matar uma cabeça na rodada e ficar com outro lado chicoteado.
+						if((ladoAMao==2)&&(possibilidades.acharJogada("a", ladoB)!=null)&&(jogo.tamanho()==2)||(ladoAMao>2)&&(possibilidades.acharJogada("a", ladoB)!=null)){
+							resp=possibilidades.acharJogada("a", ladoB);
+						}
+						else if(possibilidades.existeLado("a")){
+							possibilidades.excluirLado("b");//exclui todas jogadas do lado onde ele tem o chicote para guarda-lo
+							carrocas = verificarCarrocas(possibilidades);//da prioridade a jogar uma carroça do lado oposto ao chicote
+							if(carrocas.size()>0){
+								resp = carrocas.get(0);
+							}
+							else{
+								//encontra a peca que le tem em maior quantidade e joga.
+								int contaMaior = 0;
+								int maior = 0;
+								for(int i = 0; i < possibilidades.tamanho();i++){
+									int atual = ladoA == possibilidades.procurarInd(i).getPeca().getLadoA()?possibilidades.procurarInd(i).getPeca().getLadoB():possibilidades.procurarInd(i).getPeca().getLadoA();
+									int contar = jogo.contarPecas(atual);
+									if(contar > contaMaior){
+										maior = atual;
+									}
+								}
+								resp = possibilidades.acharJogada("b", maior);
+							}
+						}
+						else{//se só tever como jogar do lado a 
+							carrocas = verificarCarrocas(possibilidades);//da prioridade a jogar uma carroça do lado do chicote e mante-lo
+							if(carrocas.size()>0){
+								resp = carrocas.get(0);
+							}
+							else{
+								//encontra a peca que le tem em maior quantidade e joga.
+								int contaMaior = 0;
+								int maior = 0;
+								int atual;
+								for(int i = 0; i < possibilidades.tamanho();i++){
+									atual = ladoB == possibilidades.procurarInd(i).getPeca().getLadoA()?possibilidades.procurarInd(i).getPeca().getLadoB():possibilidades.procurarInd(i).getPeca().getLadoA();
+									int contar = jogo.contarPecas(atual);
+									if(contar > contaMaior){
+										maior = atual;
+									}
+								}
+								resp = possibilidades.acharJogada("b", maior);
+							}
+						}
+					//Fim elseif chicote lado b	
+					}//fim if chicote
+					else{//não encontrou chicote usando Lado A ou B (procurar pecas para levantar chicote ou de maior quantidade na mao para jogar)
+						//**********************implementar
+						int contaMao = 0;
+						int contaMesa = 0;
+						int contaMaiorMao = 0;
+						int pecaAtual = 0;
+						Jogada chicote = null;
+						Jogada melhorJogada = null;
+						boolean achouChicote = false;
+						for(int i = 0 ;(i<possibilidades.tamanho())&&(!achouChicote);i++ ){
+							if(possibilidades.procurarInd(i).getLado().equals("a")){
+								pecaAtual = ladoA==possibilidades.procurarInd(i).getPeca().getLadoA()?possibilidades.procurarInd(i).getPeca().getLadoB():possibilidades.procurarInd(i).getPeca().getLadoA();
+							}
+							else{
+								pecaAtual = ladoB==possibilidades.procurarInd(i).getPeca().getLadoB()?possibilidades.procurarInd(i).getPeca().getLadoA():possibilidades.procurarInd(i).getPeca().getLadoB();
+							}
+							contaMao = this.jogo.contarPecas(pecaAtual);
+							contaMesa = this.contarPecasTabuleiro(pecaAtual, dados); 
+							if(contaMesa + contaMao == 7){
+								chicote = possibilidades.procurarInd(i);
+								achouChicote=true;
+							}
+							else if(contaMao > contaMaiorMao){
+								melhorJogada = possibilidades.procurarInd(i);
+							}
+						}
+						if(chicote!=null){
+							resp = chicote;
+						}
+						else{
+							resp = melhorJogada;
+						}//fim else melhor jogada sem chicote usando lado A ou B
+					}//fim else não encontrou chicote Lado A ou B
+				}//Fim if não jogou
+			}//fim duas jogadas com peças diferentes
+		}//fim duas jogadas 
+		else{//mais de 2 jogadas será identica a 2 jogadas com peças diferentes
+			ArrayList<Jogada> carrocas = verificarCarrocas(possibilidades);
+			boolean jogou = false;
+			for(int i = 0; (i< carrocas.size())&&(!jogou);i++){//descobrir se existe alguma carroça com perigo de fuzilamento
+				//caso tenha 5 peças ja no tab. e nenhuma na mão pode ser fusilada então jogar logo.
+				if((jogo.contarPecas(carrocas.get(i).getPeca().getLadoA())==0)&&(this.contarPecasTabuleiro(carrocas.get(i).getPeca().getLadoA(), dados)==5)){
+					resp = carrocas.get(i);
+					jogou = true;
+				}
 			}
-		}
-		else{
-			ArrayList carrocas = verificarCarrocas(possibilidades);
-		}
-		resp = this.jogo.procurar(ladoA, ladoB);
+			if(!jogou){//caso não haja carroça a ser fusilada e a jogada nã tenha sido feita
+				int ladoATab = this.contarPecasTabuleiro(ladoA, dados); 
+				int ladoBTab = this.contarPecasTabuleiro(ladoB, dados);
+				int ladoAMao = jogo.contarPecas(ladoA);
+				int ladoBMao = jogo.contarPecas(ladoB);
+				int totalA = ladoATab + ladoAMao;
+				int totalB = ladoBTab + ladoBMao;
+				//inicio if chicote
+				if(totalA==7){//encontrou um chicote no tabuleiro vai tentar manter e se puder levantar do outro lado(if chicote lado A)
+					//caso tenha um chicote com 2 na mão e dua peças fazer dois lados iguais para fzer a cruzada
+					//ou caso tenha mais de duas, fazer dois lados iguais provocar um toque geral, matar uma cabeça na rodada e ficar com outro lado chicoteado.
+					if((ladoAMao==2)&&(possibilidades.acharJogada("b", ladoA)!=null)&&(jogo.tamanho()==2)||(ladoAMao>2)&&(possibilidades.acharJogada("b", ladoA)!=null)){
+						resp=possibilidades.acharJogada("b", ladoA);
+					}
+					else if(possibilidades.existeLado("b")){
+						possibilidades.excluirLado("a");//exclui todas jogadas do lado onde ele tem o chicote para guarda-lo
+						carrocas = verificarCarrocas(possibilidades);//da prioridade a jogar uma carroça do lado oposto ao chicote
+						if(carrocas.size()>0){
+							resp = carrocas.get(0);
+						}
+						else{
+							//encontra a peca que le tem em maior quantidade e joga.
+							int contaMaior = 0;
+							int maior = 0;
+							for(int i = 0; i < possibilidades.tamanho();i++){
+								int atual = ladoB == possibilidades.procurarInd(i).getPeca().getLadoA()?possibilidades.procurarInd(i).getPeca().getLadoB():possibilidades.procurarInd(i).getPeca().getLadoA();
+								int contar = jogo.contarPecas(atual);
+								if(contar > contaMaior){
+									maior = atual;
+								}
+							}
+							resp = possibilidades.acharJogada("b", maior);
+						}
+					}
+					else{//se só tever como jogar do lado a 
+						carrocas = verificarCarrocas(possibilidades);//da prioridade a jogar uma carroça do lado do chicote e mante-lo
+						if(carrocas.size()>0){
+							resp = carrocas.get(0);
+						}
+						else{
+							//encontra a peca que le tem em maior quantidade e joga.
+							int contaMaior = 0;
+							int maior = 0;
+							for(int i = 0; i < possibilidades.tamanho();i++){
+								int atual = ladoB == possibilidades.procurarInd(i).getPeca().getLadoA()?possibilidades.procurarInd(i).getPeca().getLadoB():possibilidades.procurarInd(i).getPeca().getLadoA();
+								int contar = jogo.contarPecas(atual);
+								if(contar > contaMaior){
+									maior = atual;
+								}
+							}
+							resp = possibilidades.acharJogada("b", maior);
+						}
+					}
+				}//(fim if chicote lado A)
+				//if chicote lado B
+				else if(totalB==7){
+					//caso tenha um chicote com 2 na mão e dua peças fazer dois lados iguais para fzer a cruzada
+					//ou caso tenha mais de duas, fazer dois lados iguais provocar um toque geral, matar uma cabeça na rodada e ficar com outro lado chicoteado.
+					if((ladoAMao==2)&&(possibilidades.acharJogada("a", ladoB)!=null)&&(jogo.tamanho()==2)||(ladoAMao>2)&&(possibilidades.acharJogada("a", ladoB)!=null)){
+						resp=possibilidades.acharJogada("a", ladoB);
+					}
+					else if(possibilidades.existeLado("a")){
+						possibilidades.excluirLado("b");//exclui todas jogadas do lado onde ele tem o chicote para guarda-lo
+						carrocas = verificarCarrocas(possibilidades);//da prioridade a jogar uma carroça do lado oposto ao chicote
+						if(carrocas.size()>0){
+							resp = carrocas.get(0);
+						}
+						else{
+							//encontra a peca que le tem em maior quantidade e joga.
+							int contaMaior = 0;
+							int maior = 0;
+							for(int i = 0; i < possibilidades.tamanho();i++){
+								int atual = ladoA == possibilidades.procurarInd(i).getPeca().getLadoA()?possibilidades.procurarInd(i).getPeca().getLadoB():possibilidades.procurarInd(i).getPeca().getLadoA();
+								int contar = jogo.contarPecas(atual);
+								if(contar > contaMaior){
+									maior = atual;
+								}
+							}
+							resp = possibilidades.acharJogada("b", maior);
+						}
+					}
+					else{//se só tever como jogar do lado a 
+						carrocas = verificarCarrocas(possibilidades);//da prioridade a jogar uma carroça do lado do chicote e mante-lo
+						if(carrocas.size()>0){
+							resp = carrocas.get(0);
+						}
+						else{
+							//encontra a peca que le tem em maior quantidade e joga.
+							int contaMaior = 0;
+							int maior = 0;
+							int atual;
+							for(int i = 0; i < possibilidades.tamanho();i++){
+								atual = ladoB == possibilidades.procurarInd(i).getPeca().getLadoA()?possibilidades.procurarInd(i).getPeca().getLadoB():possibilidades.procurarInd(i).getPeca().getLadoA();
+								int contar = jogo.contarPecas(atual);
+								if(contar > contaMaior){
+									maior = atual;
+								}
+							}
+							resp = possibilidades.acharJogada("b", maior);
+						}
+					}
+				//Fim elseif chicote lado b	
+				}//fim if chicote
+				else{//não encontrou chicote usando Lado A ou B (procurar pecas para levantar chicote ou de maior quantidade na mao para jogar)
+					//**********************implementar
+					int contaMao = 0;
+					int contaMesa = 0;
+					int contaMaiorMao = 0;
+					int pecaAtual = 0;
+					Jogada chicote = null;
+					Jogada melhorJogada = null;
+					boolean achouChicote = false;
+					for(int i = 0 ;(i<possibilidades.tamanho())&&(!achouChicote);i++ ){
+						if(possibilidades.procurarInd(i).getLado().equals("a")){
+							pecaAtual = ladoA==possibilidades.procurarInd(i).getPeca().getLadoA()?possibilidades.procurarInd(i).getPeca().getLadoB():possibilidades.procurarInd(i).getPeca().getLadoA();
+						}
+						else{
+							pecaAtual = ladoB==possibilidades.procurarInd(i).getPeca().getLadoB()?possibilidades.procurarInd(i).getPeca().getLadoA():possibilidades.procurarInd(i).getPeca().getLadoB();
+						}
+						contaMao = this.jogo.contarPecas(pecaAtual);
+						contaMesa = this.contarPecasTabuleiro(pecaAtual, dados); 
+						if(contaMesa + contaMao == 7){
+							chicote = possibilidades.procurarInd(i);
+							achouChicote=true;
+						}
+						else if(contaMao > contaMaiorMao){
+							melhorJogada = possibilidades.procurarInd(i);
+						}
+					}
+					if(chicote!=null){
+						resp = chicote;
+					}
+					else{
+						resp = melhorJogada;
+					}//fim else melhor jogada sem chicote usando lado A ou B
+				}//fim else não encontrou chicote Lado A ou B
+			}//Fim if não jogou
+		}//fim duas jogadas com peças diferentes
+		//resp = this.jogo.procurar(ladoA, ladoB);
 		jogo.excluirId(resp.getPeca().getId());
 		return resp;
 	}

@@ -54,7 +54,29 @@ public class RepositorioJogadas {
 		return jogadas.size();
 	}
 	
-	public void excluirLado(int lado){
+	public boolean existeLado(String lado){
+		boolean resp = false;
+		for(int i = 0;(i<this.tamanho())&&(!resp);i++){
+			if(lado.equals(this.procurarInd(i).getLado())){
+				resp=true;
+			}
+		}
+		return resp;
+	}
+	
+	public Jogada acharJogada(String lado,int peca){
+		Jogada resp = null;
+		for(int i = 0; i< this.tamanho();i++){
+			if(procurarInd(i).getLado().equals(lado)){
+				if((this.procurarInd(i).getPeca().getLadoA()==peca)||(this.procurarInd(i).getPeca().getLadoB()==peca)){
+					resp = this.procurarInd(i);
+				}
+			}
+		}
+		return resp;
+	}
+	
+	public void excluirLado(String lado){
 		boolean achei = false;
 		int tan = this.tamanho();
 		for (int i = 0; (i < tan && (!achei)); i++) {
