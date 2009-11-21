@@ -77,6 +77,7 @@ public class Maquina extends Jogador{
 					if(totalA==7){//encontrou um chicote no tabuleiro vai tentar manter e se puder levantar do outro lado(if chicote lado A)
 						//caso tenha um chicote com 2 na mão e dua peças fazer dois lados iguais para fzer a cruzada
 						//ou caso tenha mais de duas, fazer dois lados iguais provocar um toque geral, matar uma cabeça na rodada e ficar com outro lado chicoteado.
+						System.out.printf(" - Encontrou chicote duas pecas!!! - ");
 						if((ladoAMao==2)&&(possibilidades.acharJogada("b", ladoA)!=null)&&(jogo.tamanho()==2)||(ladoAMao>2)&&(possibilidades.acharJogada("b", ladoA)!=null)){
 							resp=possibilidades.acharJogada("b", ladoA);
 							System.out.println("Levatar chicote duas peças");
@@ -129,6 +130,7 @@ public class Maquina extends Jogador{
 					else if(totalB==7){
 						//caso tenha um chicote com 2 na mão e dua peças fazer dois lados iguais para fzer a cruzada
 						//ou caso tenha mais de duas, fazer dois lados iguais provocar um toque geral, matar uma cabeça na rodada e ficar com outro lado chicoteado.
+						System.out.printf(" - Encontrou chicote duas pecas!!! - ");
 						if((ladoAMao==2)&&(possibilidades.acharJogada("a", ladoB)!=null)&&(jogo.tamanho()==2)||(ladoAMao>2)&&(possibilidades.acharJogada("a", ladoB)!=null)){
 							resp=possibilidades.acharJogada("a", ladoB);
 						}
@@ -199,6 +201,7 @@ public class Maquina extends Jogador{
 							if(contaMesa + contaMao == 7){
 								chicote = possibilidades.procurarInd(i);
 								achouChicote=true;
+								System.out.printf(" - Encontrou chicote duas pecas!!! - ");
 							}
 							else if(contaMao > contaMaiorMao){
 								melhorJogada = possibilidades.procurarInd(i);
@@ -224,6 +227,7 @@ public class Maquina extends Jogador{
 				if((jogo.contarPecas(carrocas.get(i).getPeca().getLadoA())==0)&&(this.contarPecasTabuleiro(carrocas.get(i).getPeca().getLadoA(), dados)==5)){
 					resp = carrocas.get(i);
 					jogou = true;
+					System.out.println(" - Evitar Fuzilamento - ");
 				}
 			}
 			if(!jogou){//caso não haja carroça a ser fusilada e a jogada nã tenha sido feita
@@ -237,6 +241,7 @@ public class Maquina extends Jogador{
 				if(totalA==7){//encontrou um chicote no tabuleiro vai tentar manter e se puder levantar do outro lado(if chicote lado A)
 					//caso tenha um chicote com 2 na mão e dua peças fazer dois lados iguais para fzer a cruzada
 					//ou caso tenha mais de duas, fazer dois lados iguais provocar um toque geral, matar uma cabeça na rodada e ficar com outro lado chicoteado.
+					System.out.printf(" - Encontrou chicote duas pecas!!! - ");
 					if((ladoAMao==2)&&(possibilidades.acharJogada("b", ladoA)!=null)&&(jogo.tamanho()==2)||(ladoAMao>2)&&(possibilidades.acharJogada("b", ladoA)!=null)){
 						resp=possibilidades.acharJogada("b", ladoA);
 						System.out.println("chicote com lados A ou B");
@@ -289,6 +294,7 @@ public class Maquina extends Jogador{
 				else if(totalB==7){
 					//caso tenha um chicote com 2 na mão e dua peças fazer dois lados iguais para fzer a cruzada
 					//ou caso tenha mais de duas, fazer dois lados iguais provocar um toque geral, matar uma cabeça na rodada e ficar com outro lado chicoteado.
+					System.out.printf(" - Encontrou chicote duas pecas!!! - ");
 					if((ladoAMao==2)&&(possibilidades.acharJogada("a", ladoB)!=null)&&(jogo.tamanho()==2)||(ladoAMao>2)&&(possibilidades.acharJogada("a", ladoB)!=null)){
 						resp=possibilidades.acharJogada("a", ladoB);
 					}
@@ -366,7 +372,7 @@ public class Maquina extends Jogador{
 					}
 					if(chicote!=null){
 						resp = chicote;
-						System.out.println("chicote");
+						System.out.println(" - Encontrou!!! - ");
 					}
 					else{
 						resp = melhorJogada;
