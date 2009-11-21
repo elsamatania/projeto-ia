@@ -183,9 +183,27 @@ public class Jogar {
 					}
 
 				} else {
-					JOptionPane.showMessageDialog(null, "O jogo Fechou",
-							"Atençao", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "O jogo Fechou","Atençao", JOptionPane.WARNING_MESSAGE);
 					terminou = true;
+					int pontoJ1 = jogo.getJogo().getJogador1().contarJogo();
+					int pontoJ2 = jogo.getJogo().getJogador2().contarJogo();
+					int pontoJ3 = jogo.getJogo().getJogador3().contarJogo();
+					int pontoJ4 = jogo.getJogo().getJogador4().contarJogo();
+					if((pontoJ1<pontoJ2)&&(pontoJ1<pontoJ3)&&(pontoJ1<pontoJ4)){
+						JOptionPane.showMessageDialog(null, "Parabens você venceu com "+pontoJ1+" pontos","Atençao", JOptionPane.WARNING_MESSAGE);
+					}
+					else if((pontoJ2<pontoJ1)&&(pontoJ2<pontoJ3)&&(pontoJ2<pontoJ4)){
+						JOptionPane.showMessageDialog(null, "O jogador "+jogo.getJogo().getJogador2().getNome()+" venceu com "+pontoJ2+" pontos","Atençao", JOptionPane.WARNING_MESSAGE);
+					}
+					else if((pontoJ3<pontoJ1)&&(pontoJ3<pontoJ2)&&(pontoJ3<pontoJ4)){
+						JOptionPane.showMessageDialog(null, "O jogador "+jogo.getJogo().getJogador3().getNome()+" venceu com "+pontoJ3+" pontos","Atençao", JOptionPane.WARNING_MESSAGE);
+					}
+					else if((pontoJ4<pontoJ1)&&(pontoJ4<pontoJ3)&&(pontoJ4<pontoJ2)){
+						JOptionPane.showMessageDialog(null, "O jogador "+jogo.getJogo().getJogador4().getNome()+" venceu com "+pontoJ4+" pontos","Atençao", JOptionPane.WARNING_MESSAGE);
+					}
+					else{
+						JOptionPane.showMessageDialog(null, "Empate não houve vencedor ","Atençao", JOptionPane.WARNING_MESSAGE);
+					}
 				}
 
 			}

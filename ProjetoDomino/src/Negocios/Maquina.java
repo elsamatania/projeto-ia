@@ -19,17 +19,19 @@ public class Maquina extends Jogador{
 	
 	public Jogada jogar(int ladoA,int ladoB,Dados dados)throws NaoTemPecaException{
 		RepositorioJogadas possibilidades = jogo.jogadas(ladoA, ladoB);
+		System.out.printf("Possibilidades: "+possibilidades.tamanho()+" - ");
 		this.ordenar(possibilidades);
-		//System.out.println(possibilidades.tamanho());
 		Jogada resp = null;
 		if(possibilidades.tamanho()==0){//quer dizer que não tem peça para jogar
 			throw new  NaoTemPecaException();
 		}
 		else if(possibilidades.tamanho()==1){//como só existe uma possibilidade de jogar. Jogar!!
 			resp = possibilidades.procurarInd(0);
+			System.out.println("Só tem uma possibilidade");
 		}
 		else if((possibilidades.tamanho()==2)&&(ladoA==ladoB)){//se temos 2 possibilidade e os lados são iguais então é a mesma peça e o lado não faz diferença
 			resp = possibilidades.procurarInd(0);
+			System.out.println("Mesma peça");
 		}
 		else if(possibilidades.tamanho()==2){
 			if(possibilidades.procurarInd(0).equals(possibilidades.procurarInd(1))){//neste caso eu tenho uma peça para os dois lados ou faz doia A ou dois B evitar cruzada
@@ -40,14 +42,17 @@ public class Maquina extends Jogador{
 				 */
 				if(((lA!=5) && (lB!=5))||((lA==5) && (lB==5))){//se as duas não tiver possibilidade de cruzada escolher aleatóriamante ou se os dois teverem possibilidade.
 					resp= possibilidades.procurarInd(possibilidades.tamanho()*(int)Math.random());
+					System.out.println("Escolha aleatrotia uma peça duas possibilidades");
 				}
-				else if(lA==5){//caso só haja no lado A ele excluir a jogada do lado A e joga a qua ficou no lado B
+				else if(lA==5){//caso só haja possibilidade de cruzada no lado A ele excluir a jogada do lado A e joga a qua ficou no lado B
 					possibilidades.excluirLado("a");
 					resp = possibilidades.procurarInd(0);
+					System.out.println("Evitar cruzada lado A");
 				}
 				else{//caso só haja no lado B ele excluir a jogada do lado B e joga a qua ficou no lado A
 					possibilidades.excluirLado("b");
 					resp = possibilidades.procurarInd(0);
+					System.out.println("Evitar cruzada lado B");
 				}
 			}
 			else{
@@ -58,6 +63,7 @@ public class Maquina extends Jogador{
 					if((jogo.contarPecas(carrocas.get(i).getPeca().getLadoA())==0)&&(this.contarPecasTabuleiro(carrocas.get(i).getPeca().getLadoA(), dados)==5)){
 						resp = carrocas.get(i);
 						jogou = true;
+						System.out.println("Evitar fuzilamento duas pecas dif");
 					}
 				}
 				if(!jogou){//caso não haja carroça a ser fusilada e a jogada nã tenha sido feita
@@ -73,12 +79,14 @@ public class Maquina extends Jogador{
 						//ou caso tenha mais de duas, fazer dois lados iguais provocar um toque geral, matar uma cabeça na rodada e ficar com outro lado chicoteado.
 						if((ladoAMao==2)&&(possibilidades.acharJogada("b", ladoA)!=null)&&(jogo.tamanho()==2)||(ladoAMao>2)&&(possibilidades.acharJogada("b", ladoA)!=null)){
 							resp=possibilidades.acharJogada("b", ladoA);
+							System.out.println("Levatar chicote duas peças");
 						}
 						else if(possibilidades.existeLado("b")){
 							possibilidades.excluirLado("a");//exclui todas jogadas do lado onde ele tem o chicote para guarda-lo
 							carrocas = verificarCarrocas(possibilidades);//da prioridade a jogar uma carroça do lado oposto ao chicote
 							if(carrocas.size()>0){
 								resp = carrocas.get(0);
+								System.out.println("Evitar comer chicote prio carroça A duas pecas dif");
 							}
 							else{
 								//encontra a peca que le tem em maior quantidade e joga.
@@ -92,12 +100,14 @@ public class Maquina extends Jogador{
 									}
 								}
 								resp = possibilidades.acharJogada("b", maior);
+								System.out.println("Evitar comer chitote duas pecas dif");
 							}
 						}
 						else{//se só tever como jogar do lado a 
 							carrocas = verificarCarrocas(possibilidades);//da prioridade a jogar uma carroça do lado do chicote e mante-lo
 							if(carrocas.size()>0){
 								resp = carrocas.get(0);
+								System.out.println("Evitar comer chicote usando carroça A duas pecas dif");
 							}
 							else{
 								//encontra a peca que le tem em maior quantidade e joga.
@@ -111,6 +121,7 @@ public class Maquina extends Jogador{
 									}
 								}
 								resp = possibilidades.acharJogada("b", maior);
+								System.out.println("Não pode evitar comer chicote A duas pecas dif");
 							}
 						}
 					}//(fim if chicote lado A)
@@ -126,6 +137,7 @@ public class Maquina extends Jogador{
 							carrocas = verificarCarrocas(possibilidades);//da prioridade a jogar uma carroça do lado oposto ao chicote
 							if(carrocas.size()>0){
 								resp = carrocas.get(0);
+								System.out.println("Evitar chicote B prior carroça duas pecas dif");
 							}
 							else{
 								//encontra a peca que le tem em maior quantidade e joga.
@@ -139,12 +151,14 @@ public class Maquina extends Jogador{
 									}
 								}
 								resp = possibilidades.acharJogada("b", maior);
+								System.out.println("Evitar chicote lado B duas pecas dif");
 							}
 						}
 						else{//se só tever como jogar do lado a 
 							carrocas = verificarCarrocas(possibilidades);//da prioridade a jogar uma carroça do lado do chicote e mante-lo
 							if(carrocas.size()>0){
 								resp = carrocas.get(0);
+								System.out.println("Evitar chicote com carroça B duas pecas dif");
 							}
 							else{
 								//encontra a peca que le tem em maior quantidade e joga.
@@ -159,6 +173,7 @@ public class Maquina extends Jogador{
 									}
 								}
 								resp = possibilidades.acharJogada("b", maior);
+								System.out.println("Não pode evitar chicote B duas pecas dif");
 							}
 						}
 					//Fim elseif chicote lado b	
@@ -191,9 +206,11 @@ public class Maquina extends Jogador{
 						}
 						if(chicote!=null){
 							resp = chicote;
+							System.out.println("Chicote sem lado  duas pecas dif");
 						}
 						else{
 							resp = melhorJogada;
+							System.out.println("Melhor jogada sem lado  duas pecas dif");
 						}//fim else melhor jogada sem chicote usando lado A ou B
 					}//fim else não encontrou chicote Lado A ou B
 				}//Fim if não jogou
@@ -222,12 +239,14 @@ public class Maquina extends Jogador{
 					//ou caso tenha mais de duas, fazer dois lados iguais provocar um toque geral, matar uma cabeça na rodada e ficar com outro lado chicoteado.
 					if((ladoAMao==2)&&(possibilidades.acharJogada("b", ladoA)!=null)&&(jogo.tamanho()==2)||(ladoAMao>2)&&(possibilidades.acharJogada("b", ladoA)!=null)){
 						resp=possibilidades.acharJogada("b", ladoA);
+						System.out.println("chicote com lados A ou B");
 					}
 					else if(possibilidades.existeLado("b")){
 						possibilidades.excluirLado("a");//exclui todas jogadas do lado onde ele tem o chicote para guarda-lo
 						carrocas = verificarCarrocas(possibilidades);//da prioridade a jogar uma carroça do lado oposto ao chicote
 						if(carrocas.size()>0){
 							resp = carrocas.get(0);
+							System.out.println("manter chicote com carroça A");
 						}
 						else{
 							//encontra a peca que le tem em maior quantidade e joga.
@@ -241,12 +260,14 @@ public class Maquina extends Jogador{
 								}
 							}
 							resp = possibilidades.acharJogada("b", maior);
+							System.out.println("não pode manter chicote com carroça A");
 						}
 					}
 					else{//se só tever como jogar do lado a 
 						carrocas = verificarCarrocas(possibilidades);//da prioridade a jogar uma carroça do lado do chicote e mante-lo
 						if(carrocas.size()>0){
 							resp = carrocas.get(0);
+							System.out.println("manter chicote com carroça B");
 						}
 						else{
 							//encontra a peca que le tem em maior quantidade e joga.
@@ -260,6 +281,7 @@ public class Maquina extends Jogador{
 								}
 							}
 							resp = possibilidades.acharJogada("b", maior);
+							System.out.println("não pode manter chicote com carroça B");
 						}
 					}
 				}//(fim if chicote lado A)
@@ -275,6 +297,7 @@ public class Maquina extends Jogador{
 						carrocas = verificarCarrocas(possibilidades);//da prioridade a jogar uma carroça do lado oposto ao chicote
 						if(carrocas.size()>0){
 							resp = carrocas.get(0);
+							System.out.println("carrocas 2 pecas A");
 						}
 						else{
 							//encontra a peca que le tem em maior quantidade e joga.
@@ -288,12 +311,14 @@ public class Maquina extends Jogador{
 								}
 							}
 							resp = possibilidades.acharJogada("b", maior);
+							System.out.println("melhor jogada duas pecas A");
 						}
 					}
 					else{//se só tever como jogar do lado a 
 						carrocas = verificarCarrocas(possibilidades);//da prioridade a jogar uma carroça do lado do chicote e mante-lo
 						if(carrocas.size()>0){
 							resp = carrocas.get(0);
+							System.out.println("carrocas duas pecas B");
 						}
 						else{
 							//encontra a peca que le tem em maior quantidade e joga.
@@ -308,6 +333,7 @@ public class Maquina extends Jogador{
 								}
 							}
 							resp = possibilidades.acharJogada("b", maior);
+							System.out.println("melhor jogada duas pecas B");
 						}
 					}
 				//Fim elseif chicote lado b	
@@ -340,9 +366,11 @@ public class Maquina extends Jogador{
 					}
 					if(chicote!=null){
 						resp = chicote;
+						System.out.println("chicote");
 					}
 					else{
 						resp = melhorJogada;
+						System.out.println("melhor jogada");
 					}//fim else melhor jogada sem chicote usando lado A ou B
 				}//fim else não encontrou chicote Lado A ou B
 			}//Fim if não jogou
@@ -382,9 +410,6 @@ public class Maquina extends Jogador{
 			if(jogadas.procurarInd(i).getPeca().isCarroca()){
 				resp.add(jogadas.procurarInd(i));
 			}
-		}
-		for(int i = 0 ; i<resp.size();i++){
-			System.out.println(resp.get(i).getPeca().getValor());
 		}
 		return resp;
 	}
